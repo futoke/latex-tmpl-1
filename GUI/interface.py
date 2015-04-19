@@ -7,7 +7,7 @@ from GUI.bachelors import BachelorsWindow
 
 class CreateMainWindow:
 
-	GLADEFILE = "open-main.glade"
+	GLADEFILE = "interface.glade"
 	def __init__(self):
 
 		builder = Gtk.Builder()
