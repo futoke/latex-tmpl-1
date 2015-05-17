@@ -4,20 +4,25 @@ from gi.repository import Gdk, Gtk
 from GUI.calendar import Calendar, TempFiles
 
 
-class BachelorsWindow():
+class BachelorsWindow(object):
     """
+    Class creates a file with widening ".tex" by the addition text and dates from due to text fields.
 
+    In future: will be add an allert window which notify a user about empty fields and not creates a file until it
+    will be repaired.
     """
 
     dict_of_fields = {
         "[ARTICLE-1]": None,
+        "[ARTICLE-2]": None,
         "[AUTHOR]": None,
         "[DIRECTION]": None,
         "[LEADER]": None,
         "[CHEF]": None,
         "[YEAR]": None,
         "[STUDENT]": None,
-        "[CONSULT-A]": None,
+        "[CONSUL-A]": None,
+        "[CONSUL-B]": None,
         "[TOTAL-MARK]": None,
         "[MONTH]": None,
         "[DAY]": None,
@@ -105,7 +110,8 @@ class BachelorsWindow():
         self.chef_entry = builder.get_object("chefEntryTitle")
         self.date_entry = builder.get_object("dateEntryTitle")
         self.student_entry = builder.get_object("studentEntryTitle")
-        self.consuls_entry = builder.get_object("consulsEntryTitle")
+        self.consuls_a_entry = builder.get_object("consulsAEntryTitle")
+        self.consuls_b_entry = builder.get_object("consulsBEntryTitle")
         self.mark_entry = builder.get_object("markEntryTitle")
         self.date_prop_entry = builder.get_object("datePropEntryTitle")
         self.assists_entry = builder.get_object("assistsEntryTitle")
@@ -128,18 +134,12 @@ class BachelorsWindow():
         self.choose_date_top = builder.get_object("button16")
         self.choose_date_top.connect("clicked", self.get_date_from_calendar)
         self.choose_date_bottom = builder.get_object("button17")
-        self.choose_date_bottom.connect("clicked", self.get_date_def_from_calendar)
+        self.choose_date_bottom.connect("clicked", self.get_date_from_calendar)
         # Save window
         '''will delete'''
         self.save_tex_file = builder.get_object("filechooserdialog1")
         self.save_button = builder.get_object("save-action-button")
         self.cancel_button = builder.get_object("cancel-action-button")
-
-
-        '''allert window'''
-        self.allert_window_for_enter_empty_entries = builder.get_object("allert-empty-entries")
-
-
         self.window1.show_all()
 
     @staticmethod
@@ -151,19 +151,10 @@ class BachelorsWindow():
         """
         Calendar()
 
-    @staticmethod
-    def get_date_from_calendar(button):
-        """
-
-        :param button:
-        :return: nothing
-        """
-        Calendar()
-
     def determine_list_store(self, list_number):
         """
-
-        :param list_number:
+        Determination the list of the departments which will be interjected in the model of the departments box
+        :param list_number: current number of the faculty
         :return: nothing
         """
         array_of_lists_stores = [self.department_csm, self.department_itip, self.department_en, self.department_imbip,
@@ -175,8 +166,8 @@ class BachelorsWindow():
 
     def determine_group_store(self, group_number):
         """
-
-        :param group_number:
+        Determination the list of the groups which will be interjected in the model of the group box
+        :param group_number: current number of the department
         :return: nothing
         """
         array_of_group_lists = [self.groups_csm, self.groups_itip, self.groups_dict, self.groups_poi, self.groups_tmi,
@@ -210,95 +201,94 @@ class BachelorsWindow():
             self.group_list.clear()
             self.determine_group_store(tree_iter)
 
+    def build_article(self):
+        """
+        If article not fit on the one line, function will divides it on two through the separation of 76 characters.
+        :return first_line_of_article, second_line_of_article:
+        """
+        article = self.name_entry.get_text()
+        article = article.split(" ")
+        print(article)
+        first_line_of_article = []
+        remainder_of_article = ""
+        for current_word in article:
+            remainder_of_article += current_word
+            remainder_of_article += " "
+            if len(remainder_of_article) <= 76:
+                first_line_of_article.append(remainder_of_article)
+            else:
+                first_line_of_article = first_line_of_article.pop()[:-1]
+        second_line_of_article = remainder_of_article[len(first_line_of_article):].strip()
+        return first_line_of_article, second_line_of_article
+
+    @staticmethod
+    def addition_lines_to_text_field(text_field):
+        """
+        The input is a string that is modified by the addition of N spaces before and after it.
+        :return line: chaged line
+        """
+        length_of_field = 23
+        length_of_line = len(text_field)
+        count_of_spaces = 0
+        if length_of_line < length_of_field:
+            count_of_spaces = int((length_of_field - length_of_line) / 2)
+        line = "\quad"*count_of_spaces+" "+text_field+"\\quad"*count_of_spaces
+        return line
+
     @property
     def got_entry_fields(self):
         """
-
-        :return: self.dict_of_fields
+        Take text from each field of the active Label of the window and interjected it into dictionary
+        :return self.dict_of_fields:
         """
-        self.dict_of_fields["[ARTICLE-1]"] = self.name_entry.get_text()
-        self.dict_of_fields["[AUTHOR]"] = self.author_entry.get_text()
+        self.dict_of_fields["[ARTICLE-1]"] = self.build_article()[0]
+        self.dict_of_fields["[ARTICLE-2]"] = self.build_article()[1]
+        self.dict_of_fields["[AUTHOR]"] = self.addition_lines_to_text_field(self.author_entry.get_text())
         self.dict_of_fields["[DIRECTION]"] = self.dir_prep_entry.get_text()
-        self.dict_of_fields["[LEADER]"] = self.leader_entry.get_text()
-        self.dict_of_fields["[CHEF]"] = self.chef_entry.get_text()
-        self.dict_of_fields["[STUDENT]"] = self.student_entry.get_text()
-        self.dict_of_fields["[CONSULT-A]"] = self.consuls_entry.get_text()
+        self.dict_of_fields["[LEADER]"] = self.addition_lines_to_text_field(self.leader_entry.get_text())
+        self.dict_of_fields["[CHEF]"] = self.addition_lines_to_text_field(self.chef_entry.get_text())
+        self.dict_of_fields["[STUDENT]"] = self.addition_lines_to_text_field(self.student_entry.get_text())
+        self.dict_of_fields["[CONSUL-A]"] = self.addition_lines_to_text_field(self.consuls_a_entry.get_text())
+        self.dict_of_fields["[CONSUL-B]"] = self.addition_lines_to_text_field(self.consuls_b_entry.get_text())
         self.dict_of_fields["[TOTAL-MARK]"] = self.mark_entry.get_text()
         self.dict_of_fields["[SECRET]"] = self.assists_entry.get_text()
         self.dict_of_fields["[SHEETS]"] = self.pages_entry.get_text()
         self.dict_of_fields["[DEMO-MATERIALS]"] = self.demos_entry.get_text()
         '''Taken date'''
-        # self.get_date_from_temp_file()
-        # print("end: ", TempFiles.a)
-        # self.dict_of_fields["[DAY]"] = self.get_date_from_temp_file()[0]
-        # self.dict_of_fields["[MONTH]"] = self.get_date_from_temp_file()[1]
-        # self.dict_of_fields["[YEAR]"] = self.get_date_from_temp_file()[2]
-        #
-        # self.dict_of_fields["[DAY-DEF]"] = self.get_date_from_temp_file()[3]
-        # self.dict_of_fields["[MONTH-DEF]"] = self.get_date_from_temp_file()[4]
-        # self.dict_of_fields["[YEAR-DEF]"] = self.get_date_from_temp_file()[5]
-
         self.dict_of_fields["[DAY]"] = Calendar.array_of_dates[0]
         self.dict_of_fields["[MONTH]"] = Calendar.array_of_dates[1]
         self.dict_of_fields["[YEAR]"] = Calendar.array_of_dates[2]
         self.dict_of_fields["[DAY-DEF]"] = Calendar.array_of_dates[3]
         self.dict_of_fields["[MONTH-DEF]"] = Calendar.array_of_dates[4]
         self.dict_of_fields["[YEAR-DEF]"] = Calendar.array_of_dates[5]
-
+        # Taken student "properties"
         self.faculty_model = self.faculty_box_title.get_model()
         self.dict_of_fields["[FACULTY]"] = self.faculty_model[self.faculty_box_title.get_active_iter()][0]
-
         self.department_model = self.department_box_title.get_model()
         self.dict_of_fields["[DEPARTMENT]"] = self.department_model[self.department_box_title.get_active_iter()][0]
-
         self.group_model = self.group_box_title.get_model()
         self.dict_of_fields["[GROUP]"] = self.group_model[self.group_box_title.get_active_iter()][0]
-
-        self.valid_all_entries(self.dict_of_fields)
-
-        # TempFiles().open_file()
-        # print("end: ", TempFiles.a)
-        # os.remove(os.getcwd()+"\\temp")
 
         return self.dict_of_fields
 
     def change_tex_file(self, button):
         """
-
+        Creates a file with widening ".tex" by the addition text and dates from due to text fields.
         :param button:
-        :return: nothing
+        :return nothing:
         """
         self.dict_of_fields = self.got_entry_fields
-
-        #self.valid_all_entries(self.dict_of_fields)
-
-        self.work_file = open(os.getcwd()+"\\test", "r", encoding="utf-8")
+        self.work_file = open(os.getcwd()+"\\test.tex", "r", encoding="UTF-8")
         self.readed = self.work_file.read()
         self.work_file.close()
-        self.work_file = open(os.getcwd()+"\\%s.tex" % self.dict_of_fields["[AUTHOR]"].lower(), "a", encoding="utf-8")
+        self.work_file = open(os.getcwd()+"\\%s.tex" % self.author_entry.get_text(), "a", encoding="UTF-8")
         for i in self.dict_of_fields.keys():
             self.readed = self.readed.replace(str(i), str(self.dict_of_fields[i]))
-        print("Test: %s" % self.dict_of_fields)
-        #self.valid_all_entries(self.dict_of_fields)
         self.work_file.write(self.readed)
         self.work_file.close()
 
-    @staticmethod
-    def get_date_from_temp_file():
-        """
 
-        :return:
-        """
-        return TempFiles().open_file()
-
-    @staticmethod
-    def valid_all_entries(check_dict):
-        for element in check_dict.values():
-            if element is None or element is "":
-                print("Element %s is empty" % element)
-
-
-class Handlers():
+class Handlers(object):
     """
 
     """
