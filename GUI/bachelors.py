@@ -116,28 +116,15 @@ class BachelorsWindow():
 		for i in arrayOfListsStores[listNumber]:
 			self.departmentList.append([i])
 		self.departmentBoxTitle.set_model(self.departmentList)
-		
-	def determine_group_store(self, groupNumber):
-		arrayOfGroupLists = [self.groupsCSM, self.groupsITIP, self.groupsDICT, self.groupsPOI, self.groupsTMI, self.groupsXKTK, self.groupsTPP, self.groupsIF, self.groupsOIST,self.groupsIKVO, self.groupsIMBIP, self.groupsEN]
-		for i in arrayOfGroupLists[self.KEY][groupNumber]:
-			self.groupList.append([i])
-		self.groupBoxTitle.set_model(self.groupList)
 
 
 	def change_department_list(self, combo):
 		tree_iter = combo.get_active()
 		self.KEY = tree_iter
+		print(tree_iter)
 		if tree_iter != None:
 			self.departmentList.clear()
 			self.determine_list_store(tree_iter)
-			
-			
-	def change_groups_list(self, combo):
-		tree_iter = combo.get_active()
-		if tree_iter != None:
-			self.groupList.clear()
-			self.determine_group_store(tree_iter)
-
 
 	
 class Handlers():
