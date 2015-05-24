@@ -1,7 +1,8 @@
-import os, shutil
+import os
 
 from gi.repository import Gdk, Gtk
-from GUI.calendar import Calendar, TempFiles
+from GUI.calendar import Calendar
+from GUI.schedule import Schedule
 
 
 class BachelorsWindow(object):
@@ -13,29 +14,29 @@ class BachelorsWindow(object):
     """
 
     dict_of_fields = {
-        "[ARTICLE-1]": None,
-        "[ARTICLE-2]": None,
-        "[AUTHOR]": None,
-        "[DIRECTION]": None,
-        "[LEADER]": None,
-        "[CHEF]": None,
-        "[YEAR]": None,
-        "[STUDENT]": None,
-        "[CONSUL-A]": None,
-        "[CONSUL-B]": None,
-        "[TOTAL-MARK]": None,
-        "[MONTH]": None,
-        "[DAY]": None,
-        "[SECRET]": None,
-        "[SHEETS]": None,
-        "[DEMO-MATERIALS]": None,
-        "[FACULTY]": None,
-        "[DEPARTMENT]": None,
-        "[GROUP]": None,
-        "[DAY-DEF]": None,
-        "[MONTH-DEF]": None,
-        "[YEAR-DEF]": None
-        }
+        # Page 1: Title
+        '[ARTICLE-1]': None, '[ARTICLE-2]': None, '[AUTHOR]': None, '[DIRECTION]': None, '[LEADER]': None,
+        '[CHEF]': None, '[STUDENT]': None, '[CONSUL-A]': None, '[CONSUL-B]': None, '[TOTAL-MARK]': None,
+        '[GROUP]': None,
+        '[SECRET]': None, '[SHEETS]': None, '[DEMO-MATERIALS]': None, '[FACULTY]': None, '[DEPARTMENT]': None,
+
+        # Page 2: Task
+        '[TASK-ARTICLE]': None,
+        '[TECHNICAL-PROJECT]': None,
+        '[MAINTENANCE]': None,
+        '[GRAPHICAL-MATERIALS]': None,
+        '[PRIMARY-DATA]': None,
+
+        "[DAY]": None, "[MONTH]": None, "[YEAR]": None,
+        "[DAY-DEF]": None, "[MONTH-DEF]": None, "[YEAR-DEF]": None,
+        "[DAY-ASSERTION]": None, "[MONTH-ASSERTION]": None, "[YEAR-ASSERTION]": None,
+        "[DAY-DEAD]": None, "[MONTH-DEAD]": None, "[YEAR-DEAD]": None,
+        "[DAY-DESTRIPTION]": None, "[MONTH-DESTRIPTION]": None, "[YEAR-DESTRIPTION]": None,
+        "[DAY-ACCEPTION]": None, "[MONTH-ACCEPTION]": None, "[YEAR-ACCEPTION]": None,
+        "[DAY-ANNOTATION]": None, "[MONTH-ANNOTATION]": None, "[YEAR-ANNOTATION]": None,
+        "[DAY-RECENTEST]": None, "[MONTH-RECENTEST]": None, "[YEAR-RECENTEST]": None,
+        "[DAY-LEADER]": None, "[MONTH-LEADER]": None, "[YEAR-LEADER]": None
+    }
 
     gladefile = "open-main.glade"
     # КТУ
@@ -86,6 +87,7 @@ class BachelorsWindow(object):
     department_en = ["ЭПиМ", "ВМ", "ИТГС", "ТиПМ", "Физика"]
     groups_en = [["-"], ["4742", "4743"], ["4707", "4711"], ["-"], ["-"]]
 
+    # noinspection PyArgumentList
     def __init__(self):
         """
 
@@ -99,9 +101,9 @@ class BachelorsWindow(object):
         self.window1.set_title("Bachelor")
         self.window1.connect("delete-event", Gtk.main_quit)
         """Notebook
-        Page 1
-        Entries
+        Page 1: Title List
         """
+
         self.name_entry = builder.get_object("nameEntryTitle")
         self.author_entry = builder.get_object("authorEntryTitle")
         self.dir_prep_entry = builder.get_object("dirPrepEntryTitle")
@@ -129,27 +131,72 @@ class BachelorsWindow(object):
         self.group_list = builder.get_object("groupsList")
         # Buttons
         self.create_button = builder.get_object("createTitleButton")
-        self.create_button.connect("clicked", self.change_tex_file)
+        self.create_button.connect("clicked", lambda cf2: self.change_tex_file(0, "TITLE.tex"))
         '''Calendar buttons'''
         self.choose_date_top = builder.get_object("button16")
-        self.choose_date_top.connect("clicked", self.get_date_from_calendar)
+        self.choose_date_top.connect("clicked", lambda date_0: self.get_date_from_calendar(reported_id=0))
         self.choose_date_bottom = builder.get_object("button17")
-        self.choose_date_bottom.connect("clicked", self.get_date_from_calendar)
-        # Save window
-        '''will delete'''
-        self.save_tex_file = builder.get_object("filechooserdialog1")
-        self.save_button = builder.get_object("save-action-button")
-        self.cancel_button = builder.get_object("cancel-action-button")
+        self.choose_date_bottom.connect("clicked", lambda date_1: self.get_date_from_calendar(reported_id=1))
+
+        self.notebook = builder.get_object("notebook1")
+
+        """
+        Page 2: "Task"
+        """
+        self.confirm = builder.get_object("confirmEntryTask")
+        self.choose_date_task = builder.get_object("dateTask")
+        self.choose_date_task.connect("clicked", lambda date_2: self.get_date_from_calendar(reported_id=2))
+        self.student_task = builder.get_object("studentEntryTask")
+        self.faculty_box_task = builder.get_object("facultyBoxTask")
+        self.faculty_box_task.connect("changed", self.change_department_list)
+        self.department_box_task = builder.get_object("departmentBoxTask")
+        self.department_box_task.connect("changed", self.change_groups_list)
+        self.group_box_task = builder.get_object("groupBoxTask")
+        self.leader_task = builder.get_object("leaderEntryTask")
+        self.topic_name_task = builder.get_object("topicNameEntryTask")
+        self.direction_task = builder.get_object("dirPrepEntryTask")
+        self.qualification = builder.get_object("qualEntryTask")
+        self.choose_date_delivery = builder.get_object("dateDeliveryTask")
+        self.choose_date_delivery.connect("clicked", lambda date_3: self.get_date_from_calendar(reported_id=3))
+        self.technical_subject = builder.get_object("techSubjEntryTask")
+        self.maintenance = builder.get_object("maintenanceEntryTask")
+        self.graphical = builder.get_object("graphEntryTask")
+        self.sources = builder.get_object("sourcesEntryTask")
+        self.time_schedule = builder.get_object("timeScheduleTask")
+        self.time_schedule.connect("clicked", self.create_time_schedule)
+        self.date_issue = builder.get_object("dateIssueTask")
+        self.date_issue.connect("clicked", lambda date_4: self.get_date_from_calendar(reported_id=4))
+        self.date_accepted = builder.get_object("dateAcceptedTask")
+        self.date_accepted.connect("clicked", lambda date_5: self.get_date_from_calendar(reported_id=5))
+        self.create_task = builder.get_object("createTask")
+        self.create_task.connect("clicked", lambda cf: self.change_tex_file(1, "TASK.tex"))
+
+        """
+        Page 3: Annotation
+        """
+
+        """
+        Page 4: Review by recentest
+        """
+
+        """
+        Page 5: Review by leader
+        """
+
         self.window1.show_all()
 
     @staticmethod
-    def get_date_def_from_calendar(button):
+    def get_date_from_calendar(reported_id):
         """
 
         :param button:
         :return: nothing
         """
-        Calendar()
+        Calendar(reported_id)
+
+    @staticmethod
+    def create_time_schedule(button):
+        Schedule()
 
     def determine_list_store(self, list_number):
         """
@@ -196,7 +243,6 @@ class BachelorsWindow(object):
         :return: nothing
         """
         tree_iter = combo.get_active()
-        print("Group id: %s" % tree_iter)
         if tree_iter is not None:
             self.group_list.clear()
             self.determine_group_store(tree_iter)
@@ -208,7 +254,6 @@ class BachelorsWindow(object):
         """
         article = self.name_entry.get_text()
         article = article.split(" ")
-        print(article)
         first_line_of_article = []
         remainder_of_article = ""
         for current_word in article:
@@ -221,6 +266,7 @@ class BachelorsWindow(object):
         second_line_of_article = remainder_of_article[len(first_line_of_article):].strip()
         return first_line_of_article, second_line_of_article
 
+
     @staticmethod
     def addition_lines_to_text_field(text_field):
         """
@@ -232,60 +278,162 @@ class BachelorsWindow(object):
         count_of_spaces = 0
         if length_of_line < length_of_field:
             count_of_spaces = int((length_of_field - length_of_line) / 2)
-        line = "\quad"*count_of_spaces+" "+text_field+"\\quad"*count_of_spaces
+        line = "\quad" * count_of_spaces + " " + text_field + "\\quad" * count_of_spaces
         return line
 
-    @property
-    def got_entry_fields(self):
+    def got_entry_fields(self, page_num):
         """
         Take text from each field of the active Label of the window and interjected it into dictionary
         :return self.dict_of_fields:
         """
-        self.dict_of_fields["[ARTICLE-1]"] = self.build_article()[0]
-        self.dict_of_fields["[ARTICLE-2]"] = self.build_article()[1]
-        self.dict_of_fields["[AUTHOR]"] = self.addition_lines_to_text_field(self.author_entry.get_text())
-        self.dict_of_fields["[DIRECTION]"] = self.dir_prep_entry.get_text()
-        self.dict_of_fields["[LEADER]"] = self.addition_lines_to_text_field(self.leader_entry.get_text())
-        self.dict_of_fields["[CHEF]"] = self.addition_lines_to_text_field(self.chef_entry.get_text())
-        self.dict_of_fields["[STUDENT]"] = self.addition_lines_to_text_field(self.student_entry.get_text())
-        self.dict_of_fields["[CONSUL-A]"] = self.addition_lines_to_text_field(self.consuls_a_entry.get_text())
-        self.dict_of_fields["[CONSUL-B]"] = self.addition_lines_to_text_field(self.consuls_b_entry.get_text())
-        self.dict_of_fields["[TOTAL-MARK]"] = self.mark_entry.get_text()
-        self.dict_of_fields["[SECRET]"] = self.assists_entry.get_text()
-        self.dict_of_fields["[SHEETS]"] = self.pages_entry.get_text()
-        self.dict_of_fields["[DEMO-MATERIALS]"] = self.demos_entry.get_text()
-        '''Taken date'''
-        self.dict_of_fields["[DAY]"] = Calendar.array_of_dates[0]
-        self.dict_of_fields["[MONTH]"] = Calendar.array_of_dates[1]
-        self.dict_of_fields["[YEAR]"] = Calendar.array_of_dates[2]
-        self.dict_of_fields["[DAY-DEF]"] = Calendar.array_of_dates[3]
-        self.dict_of_fields["[MONTH-DEF]"] = Calendar.array_of_dates[4]
-        self.dict_of_fields["[YEAR-DEF]"] = Calendar.array_of_dates[5]
-        # Taken student "properties"
-        self.faculty_model = self.faculty_box_title.get_model()
-        self.dict_of_fields["[FACULTY]"] = self.faculty_model[self.faculty_box_title.get_active_iter()][0]
-        self.department_model = self.department_box_title.get_model()
-        self.dict_of_fields["[DEPARTMENT]"] = self.department_model[self.department_box_title.get_active_iter()][0]
-        self.group_model = self.group_box_title.get_model()
-        self.dict_of_fields["[GROUP]"] = self.group_model[self.group_box_title.get_active_iter()][0]
+        self.page_num = page_num
+        if self.page_num is 0:
+            for i in range(len(self.dict_of_fields)):
+                self.dict_of_fields["%s" % list(self.dict_of_fields.keys())[i]] = ''
+            if len(self.name_entry.get_text()) > 76:
+                self.dict_of_fields["[ARTICLE-1]"] = self.build_article()[0]
+                self.dict_of_fields["[ARTICLE-2]"] = self.build_article()[1]
+            else:
+                self.dict_of_fields["[ARTICLE-1]"] = self.name_entry.get_text()
+            self.dict_of_fields["[AUTHOR]"] = self.addition_lines_to_text_field(self.author_entry.get_text())
+            self.dict_of_fields["[DIRECTION]"] = self.addition_lines_to_text_field(self.dir_prep_entry.get_text())
+            self.dict_of_fields["[LEADER]"] = self.addition_lines_to_text_field(self.leader_entry.get_text())
+            self.dict_of_fields["[CHEF]"] = self.addition_lines_to_text_field(self.chef_entry.get_text())
+            self.dict_of_fields["[STUDENT]"] = self.addition_lines_to_text_field(self.student_entry.get_text())
+            self.dict_of_fields["[CONSUL-A]"] = self.addition_lines_to_text_field(self.consuls_a_entry.get_text())
+            self.dict_of_fields["[CONSUL-B]"] = self.addition_lines_to_text_field(self.consuls_b_entry.get_text())
+            self.dict_of_fields["[TOTAL-MARK]"] = self.mark_entry.get_text()
+            self.dict_of_fields["[SECRET]"] = self.assists_entry.get_text()
+            self.dict_of_fields["[SHEETS]"] = self.addition_lines_to_text_field(self.pages_entry.get_text())
+            self.dict_of_fields["[DEMO-MATERIALS]"] = self.addition_lines_to_text_field(self.demos_entry.get_text())
+            '''Taken date'''
+            list_of_keys = list(Calendar.dict_of_dates.keys())
+            for current_key in list_of_keys:
+                self.dict_of_fields["[%s]" % current_key.upper()] = Calendar.dict_of_dates[current_key]
+            # Taken student "properties"
+            self.faculty_model = self.faculty_box_title.get_model()
+            self.dict_of_fields["[FACULTY]"] = self.faculty_model[self.faculty_box_title.get_active_iter()][0]
+            self.department_model = self.department_box_title.get_model()
+            self.dict_of_fields["[DEPARTMENT]"] = self.department_model[self.department_box_title.get_active_iter()][0]
+            self.group_model = self.group_box_title.get_model()
+            self.dict_of_fields["[GROUP]"] = self.group_model[self.group_box_title.get_active_iter()][0]
+            return self.dict_of_fields
+        elif self.page_num is 1:
+            for i in range(len(self.dict_of_fields)):
+                self.dict_of_fields["%s" % list(self.dict_of_fields.keys())[i]] = ''
 
-        return self.dict_of_fields
+            list_of_keys = list(Calendar.dict_of_dates.keys())
+            for current_key in list_of_keys:
+                self.dict_of_fields["[%s]" % current_key.upper()] = Calendar.dict_of_dates[current_key]
 
-    def change_tex_file(self, button):
+            self.dict_of_fields["[STUDENT]"] = self.addition_lines_to_text_field(self.student_task.get_text())
+
+            self.faculty_model = self.faculty_box_task.get_model()
+            self.dict_of_fields["[FACULTY]"] = self.faculty_model[self.faculty_box_task.get_active_iter()][0]
+            self.department_model = self.department_box_task.get_model()
+            self.dict_of_fields["[DEPARTMENT]"] = self.department_model[self.department_box_task.get_active_iter()][0]
+            self.group_model = self.group_box_task.get_model()
+            self.dict_of_fields["[GROUP]"] = self.group_model[self.group_box_task.get_active_iter()][0]
+
+            self.dict_of_fields["[LEADER]"] = self.addition_lines_to_text_field(self.leader_task.get_text())
+            self.dict_of_fields["[TASK-ARTICLE]"] = self.addition_lines_to_text_field(self.topic_name_task.get_text())
+            self.dict_of_fields["[DIRECTION]"] = self.addition_lines_to_text_field(self.direction_task.get_text())
+            self.dict_of_fields["[TECHNICAL-PROJECT]"] = self.technical_subject.get_buffer().get_text(
+                self.technical_subject.get_buffer().get_start_iter(),
+                self.technical_subject.get_buffer().get_end_iter(), True)
+            self.dict_of_fields["[TECHNICAL-PROJECT]"] = self.add_new_line_to_tex(self.dict_of_fields["[TECHNICAL-PROJECT]"], end=0)
+            # self.dict_of_fields["[MAINTENANCE]"] = self.maintenance.get_buffer().get_text(
+            #     self.maintenance.get_buffer().get_start_iter(), self.maintenance.get_buffer().get_end_iter(), True)
+            # self.dict_of_fields["[GRAPHICAL-MATERIALS]"] = self.graphical.get_buffer().get_text(
+            #     self.graphical.get_buffer().get_start_iter(), self.graphical.get_buffer().get_end_iter(), True)
+            # self.dict_of_fields["[PRIMARY-DATA]"] = self.sources.get_buffer().get_text(
+            #     self.sources.get_buffer().get_start_iter(), self.sources.get_buffer().get_end_iter(), True)
+
+            #self.dict_of_fields["[TECHNICAL-PROJECT]"] = self.add_new_line_to_tex(self.dict_of_fields["[TECHNICAL-PROJECT]"], end=0)
+
+            return self.dict_of_fields
+
+    def add_new_line_to_tex(self, line, end):
+
+        """
+         .replace("\n", " ").split(" ")
+
+         for i in range(1, len(t)):
+            if len(t[i-1]+" "+t[i]) <= 76:
+                t[i-1] += " "
+                t[i-1] += t[i]
+                del t[i]
+        """
+        self.line = line
+        length_of_line = 125
+        self.length_of_first_line = 0
+        if end is 0:
+            self.length_of_first_line = 68
+        self.line_2 = self.line.replace("\n", " ").replace("- ", "")
+        self.line = self.line.replace("\n", " ").replace("- ", "").split(" ")
+        self.count_iters = 0
+        self.intermediate_array = []
+        remaind_line = ""
+        for i in self.line:
+            remaind_line += i
+            remaind_line += " "
+            if len(remaind_line) <= self.length_of_first_line:
+                self.count_iters += 1
+                self.intermediate_array.append(remaind_line)
+                self.first_line = self.intermediate_array.pop()
+        self.intermediate_array = []
+        new_array = []
+        s_const = self.length_of_first_line
+        f_const = length_of_line
+        for i in range(11):
+            s = s_const + f_const*i + i
+            f = s_const + f_const*(i+1)+i
+            cut_a = len(self.line_2[s:f].split(" ").pop())
+            #cut_b = len(a[s_2:f_2].split(" ").pop())
+            if i > 0:
+                s_0 = s_const + f_const*(i-1) + (i-1)
+                f_0 = s_const + f_const*i+(i-1)
+                cut_s_0 = len(self.line_2[s_0:f_0].split(" ").pop())
+                new_array.append(self.line_2[s-cut_s_0-1:f-cut_a])
+            else:
+                new_array.append(self.line_2[s:f-cut_a])
+        total_string = """"""
+        total_string += "\\underline{%s}\n" % self.first_line
+        for i in range(len(new_array)):
+            if new_array[i] is not "":
+                new_array[i] = "~\\\\\\underline{%s}\n" % new_array[i]
+        for i in range(len(new_array)):
+            if new_array[i] is not "":
+                total_string += new_array[i]
+        #total_string += ("~\\\\\\underline{%s}" % ("\\quad"*80))*5
+
+        return total_string
+
+    def change_tex_file(self, page_num, file_name):
         """
         Creates a file with widening ".tex" by the addition text and dates from due to text fields.
         :param button:
         :return nothing:
         """
-        self.dict_of_fields = self.got_entry_fields
-        self.work_file = open(os.getcwd()+"\\test.tex", "r", encoding="UTF-8")
+        path = os.getcwd() + "GUI\\samples\\bachelor\\dev\\"
+        path_to_files = [path + "title.tex", path + "task.tex", path + "annotation.tex",
+                         path + "review_by_recentest.txe",
+                         path + "review_by_leader.tex"]
+
+        self.dict_of_fields = self.got_entry_fields(page_num=page_num)
+        self.work_file = open("{0}".format(path_to_files[page_num]), "r", encoding="UTF-8")
         self.readed = self.work_file.read()
         self.work_file.close()
-        self.work_file = open(os.getcwd()+"\\%s.tex" % self.author_entry.get_text(), "a", encoding="UTF-8")
+        self.work_file = open(file_name, "a", encoding="UTF-8")
         for i in self.dict_of_fields.keys():
             self.readed = self.readed.replace(str(i), str(self.dict_of_fields[i]))
         self.work_file.write(self.readed)
         self.work_file.close()
+
+
+    @staticmethod
+    def on_notebook1_change_current_page():
+        print("changed-b")
 
 
 class Handlers(object):
@@ -293,9 +441,24 @@ class Handlers(object):
 
     """
 
-    def passed(self):
-        """
+    def on_notebook1_switch_page(self, widget, label, page):
 
-        :return: nothing
-        """
-        pass
+        number_of_current_page = 0
+
+        if page is 0:
+            number_of_current_page = 0
+            print("Title")
+        elif page is 1:
+            number_of_current_page = 1
+            print("Task")
+        elif page is 2:
+            number_of_current_page = 2
+            print("Annotation")
+        elif page is 3:
+            number_of_current_page = 3
+            print("Review by recentest")
+        elif page is 4:
+            number_of_current_page = 4
+            print("Review by leader")
+
+        return number_of_current_page
