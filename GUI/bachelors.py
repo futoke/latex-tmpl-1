@@ -26,6 +26,7 @@ class BachelorsWindow(object):
         '[MAINTENANCE]': None,
         '[GRAPHICAL-MATERIALS]': None,
         '[PRIMARY-DATA]': None,
+        '[[TABLE-LINES]]': None,
 
         "[DAY]": None, "[MONTH]": None, "[YEAR]": None,
         "[DAY-DEF]": None, "[MONTH-DEF]": None, "[YEAR-DEF]": None,
@@ -103,7 +104,6 @@ class BachelorsWindow(object):
         """Notebook
         Page 1: Title List
         """
-
         self.name_entry = builder.get_object("nameEntryTitle")
         self.author_entry = builder.get_object("authorEntryTitle")
         self.dir_prep_entry = builder.get_object("dirPrepEntryTitle")
@@ -137,9 +137,7 @@ class BachelorsWindow(object):
         self.choose_date_top.connect("clicked", lambda date_0: self.get_date_from_calendar(reported_id=0))
         self.choose_date_bottom = builder.get_object("button17")
         self.choose_date_bottom.connect("clicked", lambda date_1: self.get_date_from_calendar(reported_id=1))
-
         self.notebook = builder.get_object("notebook1")
-
         """
         Page 2: "Task"
         """
@@ -163,26 +161,80 @@ class BachelorsWindow(object):
         self.graphical = builder.get_object("graphEntryTask")
         self.sources = builder.get_object("sourcesEntryTask")
         self.time_schedule = builder.get_object("timeScheduleTask")
-        self.time_schedule.connect("clicked", self.create_time_schedule)
+        self.time_schedule.connect("clicked", lambda cts: self.create_time_schedule())
         self.date_issue = builder.get_object("dateIssueTask")
         self.date_issue.connect("clicked", lambda date_4: self.get_date_from_calendar(reported_id=4))
         self.date_accepted = builder.get_object("dateAcceptedTask")
         self.date_accepted.connect("clicked", lambda date_5: self.get_date_from_calendar(reported_id=5))
         self.create_task = builder.get_object("createTask")
         self.create_task.connect("clicked", lambda cf: self.change_tex_file(1, "TASK.tex"))
-
         """
-        Page 3: Annotation
+        Page 3: Annotationse
         """
-
+        self.student_annotation = builder.get_object("studentEntryAnnotation")
+        self.subject_annotation = builder.get_object("subjectEntryAnnotation")
+        self.direction_annotation = builder.get_object("dirPrepEntryAnnotation")
+        self.organisation_annotation = builder.get_object("organisationEntryAnnotation")
+        self.research_objective_annotation = builder.get_object("resObjEntryAnnotation")
+        self.problems_annptation = builder.get_object("problemsEntryAnnotation")
+        self.numbers_sources_annotation = builder.get_object("numSourcesEntryAnnotation")
+        self.total_sources_annotation = builder.get_object("totalSourcesEntryAnnotation")
+        self.last_5_native_annotation = builder.get_object("last5NativeEntryAnnotation")
+        self.middle_native_annotation = builder.get_object("5to10NativeEntryAnnotation")
+        self.more_10_native_annotation = builder.get_object("more10NativeEntryAnnotation")
+        self.last_5_foreign_annotation = builder.get_object("last5ForeignEntryAnnotation")
+        self.middle_foreign_annotation = builder.get_object("5to10ForeignEntryAnnotation")
+        self.more_10_foreign_annotation = builder.get_object("more10ForeignEntryAnnotation")
+        # yes / no here
+        self.internet_sources_annotation = builder.get_object("internetResourcesEntryAnnotation")
+        self.hi_tech_annotation = builder.get_object("hiTechEntryAnnotation")
+        self.short_description_annotation = builder.get_object("shortDescriptionEntryAnnotation")
+        self.grants_annotation = builder.get_object("grantsEntryAnnotation")
+        self.publices_annotation = builder.get_object("publicesEntryAnnotation")
+        self.graduate_annotation = builder.get_object("graduateEntryAnnotation")
+        self.leader_annotation = builder.get_object("leaderEntryAnnotation")
+        self.date_button_annotation = builder.get_object("dateAnnotation")
+        self.date_button_annotation.connect("clicked", lambda date_6: self.get_date_from_calendar(reported_id=6))
+        self.create_annotation = builder.get_object("createButtonAnnotation")
+        self.create_annotation.connect("clicked", lambda cfa: self.change_tex_file(2, "ANNOTATION.tex"))
         """
         Page 4: Review by recentest
         """
-
+        self.student_recentest = builder.get_object("studentEntryRecentest")
+        self.faculty_box_recentest = builder.get_object("facultyBoxRecentest")
+        self.faculty_box_recentest.connect("changed", self.change_department_list)
+        self.department_box_recentest = builder.get_object("departmentBoxRecentest")
+        self.department_box_recentest.connect("changed", self.change_groups_list)
+        self.group_box_recentest = builder.get_object("groupBoxRecentest")
+        self.direction_recentest = builder.get_object("dirPrepEntryRecentest")
+        self.leader_recentest = builder.get_object("leaderEntryRecentest")
+        self.topic_name_recentest = builder.get_object("topicNameEntryRecentest")
+        self.advantages_recentest = builder.get_object("advantagesRecentest")
+        self.disadvantages_recentest = builder.get_object("disadvantagesRecentest")
+        self.mark_recentest = builder.get_object("markEntryRecentest")
+        self.recentest = builder.get_object("recentestEntryRecentest")
+        self.date_button_recentest = builder.get_object("dateRecentest")
+        self.date_button_recentest.connect("clicked", lambda date_7: self.get_date_from_calendar(reported_id=7))
+        self.create_recentest = builder.get_object("createButtonRecentest")
+        self.create_recentest.connect("clicked", lambda cfr: self.change_tex_file(3, "REVIEW-BY-RECENTEST.tex"))
         """
         Page 5: Review by leader
         """
-
+        self.student_leader = builder.get_object("studentEntryLeader")
+        self.faculty_box_leader = builder.get_object("facultyBoxLeader")
+        self.faculty_box_leader.connect("changed", self.change_department_list)
+        self.department_box_leader = builder.get_object("departmentBoxLeader")
+        self.department_box_leader.connect("changed", self.change_groups_list)
+        self.group_box_leader = builder.get_object("groupBoxLeader")
+        self.direction_leader = builder.get_object("dirPrepEntryLeader")
+        self.leader_leader = builder.get_object("leaderEntryLeader")
+        self.topic_name_leader = builder.get_object("topicNameEntryLeader")
+        self.advantages_leader = builder.get_object("advantagesEntryLeader")
+        self.disadvantages_leader = builder.get_object("disadvantagesLeader")
+        self.date_button_leader = builder.get_object("dateLeader")
+        self.date_button_leader.connect("clicked", lambda date_8: self.get_date_from_calendar(reported_id=8))
+        self.create_leader = builder.get_object("createButtonLeader")
+        self.create_leader.connect("clicked", lambda clf: self.change_tex_file(4, "REVIEW-BY-LEADER.tex"))
         self.window1.show_all()
 
     @staticmethod
@@ -195,7 +247,7 @@ class BachelorsWindow(object):
         Calendar(reported_id)
 
     @staticmethod
-    def create_time_schedule(button):
+    def create_time_schedule():
         Schedule()
 
     def determine_list_store(self, list_number):
@@ -266,7 +318,6 @@ class BachelorsWindow(object):
         second_line_of_article = remainder_of_article[len(first_line_of_article):].strip()
         return first_line_of_article, second_line_of_article
 
-
     @staticmethod
     def addition_lines_to_text_field(text_field):
         """
@@ -277,17 +328,23 @@ class BachelorsWindow(object):
         length_of_line = len(text_field)
         count_of_spaces = 0
         if length_of_line < length_of_field:
-            count_of_spaces = int((length_of_field - length_of_line) / 2)
-        line = "\quad" * count_of_spaces + " " + text_field + "\\quad" * count_of_spaces
+            count_of_spaces = int(abs((length_of_field - length_of_line) / 2))
+        line = "\\hspace{%sem}" % count_of_spaces + " " + text_field + "\\hspace{%sem}" % count_of_spaces
         return line
+
 
     def got_entry_fields(self, page_num):
         """
         Take text from each field of the active Label of the window and interjected it into dictionary
+
+        Issues: Change structure of the method. (!!!)
+
         :return self.dict_of_fields:
         """
         self.page_num = page_num
         if self.page_num is 0:
+            """Page 1: Title
+            """
             for i in range(len(self.dict_of_fields)):
                 self.dict_of_fields["%s" % list(self.dict_of_fields.keys())[i]] = ''
             if len(self.name_entry.get_text()) > 76:
@@ -319,95 +376,140 @@ class BachelorsWindow(object):
             self.dict_of_fields["[GROUP]"] = self.group_model[self.group_box_title.get_active_iter()][0]
             return self.dict_of_fields
         elif self.page_num is 1:
+            """Page 2: Task
+            """
             for i in range(len(self.dict_of_fields)):
                 self.dict_of_fields["%s" % list(self.dict_of_fields.keys())[i]] = ''
-
             list_of_keys = list(Calendar.dict_of_dates.keys())
             for current_key in list_of_keys:
                 self.dict_of_fields["[%s]" % current_key.upper()] = Calendar.dict_of_dates[current_key]
-
             self.dict_of_fields["[STUDENT]"] = self.addition_lines_to_text_field(self.student_task.get_text())
-
             self.faculty_model = self.faculty_box_task.get_model()
             self.dict_of_fields["[FACULTY]"] = self.faculty_model[self.faculty_box_task.get_active_iter()][0]
             self.department_model = self.department_box_task.get_model()
             self.dict_of_fields["[DEPARTMENT]"] = self.department_model[self.department_box_task.get_active_iter()][0]
             self.group_model = self.group_box_task.get_model()
             self.dict_of_fields["[GROUP]"] = self.group_model[self.group_box_task.get_active_iter()][0]
-
             self.dict_of_fields["[LEADER]"] = self.addition_lines_to_text_field(self.leader_task.get_text())
             self.dict_of_fields["[TASK-ARTICLE]"] = self.addition_lines_to_text_field(self.topic_name_task.get_text())
             self.dict_of_fields["[DIRECTION]"] = self.addition_lines_to_text_field(self.direction_task.get_text())
             self.dict_of_fields["[TECHNICAL-PROJECT]"] = self.technical_subject.get_buffer().get_text(
                 self.technical_subject.get_buffer().get_start_iter(),
                 self.technical_subject.get_buffer().get_end_iter(), True)
-            self.dict_of_fields["[TECHNICAL-PROJECT]"] = self.add_new_line_to_tex(self.dict_of_fields["[TECHNICAL-PROJECT]"], end=0)
-            # self.dict_of_fields["[MAINTENANCE]"] = self.maintenance.get_buffer().get_text(
-            #     self.maintenance.get_buffer().get_start_iter(), self.maintenance.get_buffer().get_end_iter(), True)
-            # self.dict_of_fields["[GRAPHICAL-MATERIALS]"] = self.graphical.get_buffer().get_text(
-            #     self.graphical.get_buffer().get_start_iter(), self.graphical.get_buffer().get_end_iter(), True)
-            # self.dict_of_fields["[PRIMARY-DATA]"] = self.sources.get_buffer().get_text(
-            #     self.sources.get_buffer().get_start_iter(), self.sources.get_buffer().get_end_iter(), True)
-
-            #self.dict_of_fields["[TECHNICAL-PROJECT]"] = self.add_new_line_to_tex(self.dict_of_fields["[TECHNICAL-PROJECT]"], end=0)
-
+            self.dict_of_fields["[TECHNICAL-PROJECT]"] = self.add_new_line_to_tex(
+                self.dict_of_fields["[TECHNICAL-PROJECT]"], end=0)
+            self.dict_of_fields["[MAINTENANCE]"] = self.maintenance.get_buffer().get_text(
+                self.maintenance.get_buffer().get_start_iter(),
+                self.maintenance.get_buffer().get_end_iter(), True)
+            self.dict_of_fields["[MAINTENANCE]"] = self.add_new_line_to_tex((self.dict_of_fields["[MAINTENANCE]"]),
+                                                                            end=1)
+            self.dict_of_fields["[GRAPHICAL-MATERIALS]"] = self.graphical.get_buffer().get_text(
+                self.graphical.get_buffer().get_start_iter(), self.graphical.get_buffer().get_end_iter(), True)
+            self.dict_of_fields["[GRAPHICAL-MATERIALS]"] = self.add_new_line_to_tex(
+                (self.dict_of_fields["[GRAPHICAL-MATERIALS]"]), end=2)
+            self.dict_of_fields["[PRIMARY-DATA]"] = self.sources.get_buffer().get_text(
+                self.sources.get_buffer().get_start_iter(), self.sources.get_buffer().get_end_iter(), True)
+            self.dict_of_fields["[PRIMARY-DATA]"] = self.add_new_line_to_tex((self.dict_of_fields["[PRIMARY-DATA]"]),
+                                                                             end=3)
+            self.dict_of_fields["[TABLE-LINES]"] = Schedule.total_table[0]
             return self.dict_of_fields
 
+        elif self.page_num is 2:
+            """Page 3: Annotation
+            """
+            pass
+        elif self.page_num is 3:
+            """Page 4: Review by recentest
+            """
+            pass
+        elif self.page_num is 4:
+            """Page 5: Review by leader
+            """
+            for i in range(len(self.dict_of_fields)):
+                self.dict_of_fields["%s" % list(self.dict_of_fields.keys())[i]] = ''
+            list_of_keys = list(Calendar.dict_of_dates.keys())
+            for current_key in list_of_keys:
+                self.dict_of_fields["[%s]" % current_key.upper()] = Calendar.dict_of_dates[current_key]
+            self.dict_of_fields["[STUDENT]"] = self.addition_lines_to_text_field(self.student_leader.get_text())
+            self.faculty_model = self.faculty_box_leader.get_model()
+            self.dict_of_fields["[FACULTY]"] = self.faculty_model[self.faculty_box_leader.get_active_iter()][0]
+            self.department_model = self.department_box_leader.get_model()
+            self.dict_of_fields["[DEPARTMENT]"] = self.department_model[self.department_box_leader.get_active_iter()][0]
+            self.group_model = self.group_box_leader.get_model()
+            self.dict_of_fields["[GROUP]"] = self.group_model[self.group_box_leader.get_active_iter()][0]
+            self.dict_of_fields["[DIRECTION]"] = self.addition_lines_to_text_field(self.direction_leader.get_text())
+            self.dict_of_fields["[LEADER]"] = self.addition_lines_to_text_field(self.leader_leader.get_text())
+            self.dict_of_fields["[SUBJECT]"] = self.addition_lines_to_text_field(self.topic_name_leader.get_text())
+            self.dict_of_fields["[ADVANTAGES-LEADER]"] = self.advantages_leader.get_buffer().get_text(
+                self.advantages_leader.get_buffer().get_start_iter(),
+                self.advantages_leader.get_buffer().get_end_iter(), True)
+            self.dict_of_fields["[ADVANTAGES-LEADER]"] = self.add_new_line_to_tex(
+                self.dict_of_fields["[ADVANTAGES-LEADER]"], end=4)
+            self.dict_of_fields["[DISADVANTAGES-LEADER]"] = self.disadvantages_leader.get_buffer().get_text(
+                self.disadvantages_leader.get_buffer().get_start_iter(),
+                self.disadvantages_leader.get_buffer().get_end_iter(), True)
+            self.dict_of_fields["[DISADVANTAGES-LEADER]"] = self.add_new_line_to_tex(
+                self.dict_of_fields["[DISADVANTAGES-LEADER]"], end=4)
+            return self.dict_of_fields
+
+
     def add_new_line_to_tex(self, line, end):
-
         """
-         .replace("\n", " ").split(" ")
 
-         for i in range(1, len(t)):
-            if len(t[i-1]+" "+t[i]) <= 76:
-                t[i-1] += " "
-                t[i-1] += t[i]
-                del t[i]
+        Issue: FIX the devide of the text into lines. (!!!)
+
+        :param line:
+        :param end:
+        :return:
         """
         self.line = line
-        length_of_line = 125
+        length_of_line = 95
         self.length_of_first_line = 0
         if end is 0:
-            self.length_of_first_line = 68
-        self.line_2 = self.line.replace("\n", " ").replace("- ", "")
-        self.line = self.line.replace("\n", " ").replace("- ", "").split(" ")
-        self.count_iters = 0
+            self.length_of_first_line = 30
+        if end in [1, 2]:
+            self.length_of_first_line = 40
+        if end is 3:
+            self.length_of_first_line = 87
+        else:
+            # Will be changed
+            self.length_of_first_line = length_of_line
+        self.line_to_slicing = self.line.replace("\n", " ").replace("- ", "")
+        self.splitted_line = self.line.replace("\n", " ").replace("- ", "").split(" ")
         self.intermediate_array = []
         remaind_line = ""
-        for i in self.line:
+        for i in self.splitted_line:
             remaind_line += i
             remaind_line += " "
             if len(remaind_line) <= self.length_of_first_line:
-                self.count_iters += 1
                 self.intermediate_array.append(remaind_line)
                 self.first_line = self.intermediate_array.pop()
-        self.intermediate_array = []
         new_array = []
-        s_const = self.length_of_first_line
-        f_const = length_of_line
-        for i in range(11):
-            s = s_const + f_const*i + i
-            f = s_const + f_const*(i+1)+i
-            cut_a = len(self.line_2[s:f].split(" ").pop())
-            #cut_b = len(a[s_2:f_2].split(" ").pop())
+        start_slice_const = self.length_of_first_line
+        end_slice_const = length_of_line
+        for i in range(line.count("\n") + 1):
+            start_slice = start_slice_const + end_slice_const * i + i
+            end_slice = start_slice_const + end_slice_const * (i + 1) + i
+            cut_a = len(self.line_to_slicing[start_slice:end_slice].rstrip().split(" ").pop())
             if i > 0:
-                s_0 = s_const + f_const*(i-1) + (i-1)
-                f_0 = s_const + f_const*i+(i-1)
-                cut_s_0 = len(self.line_2[s_0:f_0].split(" ").pop())
-                new_array.append(self.line_2[s-cut_s_0-1:f-cut_a])
+                start_slice_prev = start_slice_const + end_slice_const * (i - 1) + (i - 1)
+                end_slice_prev = end_slice_const + end_slice_const * i + (i - 1)
+                cut_s_0 = len(self.line_to_slicing[
+                              end_slice_prev - start_slice_prev:start_slice - end_slice_prev].lstrip().rstrip().split(
+                    " ").pop())
+                new_array.append(self.line_to_slicing[start_slice - cut_s_0:end_slice - cut_a + 1])
             else:
-                new_array.append(self.line_2[s:f-cut_a])
+                new_array.append(self.line_to_slicing[start_slice:end_slice - cut_a])
         total_string = """"""
         total_string += "\\underline{%s}\n" % self.first_line
         for i in range(len(new_array)):
             if new_array[i] is not "":
-                new_array[i] = "~\\\\\\underline{%s}\n" % new_array[i]
-        for i in range(len(new_array)):
-            if new_array[i] is not "":
+                new_array[i] = "~\\\\~\\\\\\underline{%s}\n" % new_array[i]
                 total_string += new_array[i]
-        #total_string += ("~\\\\\\underline{%s}" % ("\\quad"*80))*5
+        total_string += ("~\\\\~\\\\\\underline{\hspace{63em}}\n" * 2)
 
         return total_string
+
 
     def change_tex_file(self, page_num, file_name):
         """
@@ -415,11 +517,11 @@ class BachelorsWindow(object):
         :param button:
         :return nothing:
         """
-        path = os.getcwd() + "GUI\\samples\\bachelor\\dev\\"
+
+        path = os.getcwd() + "\\samples\\bachelor\\dev\\"
         path_to_files = [path + "title.tex", path + "task.tex", path + "annotation.tex",
                          path + "review_by_recentest.txe",
                          path + "review_by_leader.tex"]
-
         self.dict_of_fields = self.got_entry_fields(page_num=page_num)
         self.work_file = open("{0}".format(path_to_files[page_num]), "r", encoding="UTF-8")
         self.readed = self.work_file.read()
@@ -431,34 +533,22 @@ class BachelorsWindow(object):
         self.work_file.close()
 
 
-    @staticmethod
-    def on_notebook1_change_current_page():
-        print("changed-b")
-
-
 class Handlers(object):
     """
 
     """
 
     def on_notebook1_switch_page(self, widget, label, page):
-
         number_of_current_page = 0
-
         if page is 0:
             number_of_current_page = 0
-            print("Title")
         elif page is 1:
             number_of_current_page = 1
-            print("Task")
         elif page is 2:
             number_of_current_page = 2
-            print("Annotation")
         elif page is 3:
             number_of_current_page = 3
-            print("Review by recentest")
         elif page is 4:
             number_of_current_page = 4
-            print("Review by leader")
 
         return number_of_current_page
