@@ -2,7 +2,7 @@ __author__ = 'eprivalov'
 
 from gi.repository import Gtk, Gdk
 import os
-import GUI.bachelors
+import bachelors
 
 
 class Schedule(object):
@@ -23,7 +23,6 @@ class Schedule(object):
         self.schedule_clear_button.connect("clicked", self.clicked_clear_button)
         self.schedule_window.show_all()
         Gtk.main()
-
 
     def clicked_accept_button(self, button):
         """

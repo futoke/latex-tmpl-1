@@ -3,7 +3,9 @@
 \usepackage[russian]{babel}
 \usepackage[left=2cm,right=2cm,top=2cm,bottom=2cm,bindingoffset=0cm]{geometry}
 \usepackage{amsmath}
-
+\usepackage{multirow}
+%\usepackage{longtable}
+\usepackage{graphicx}
 
 \begin{document}
 
@@ -13,35 +15,68 @@
 
 \begin{center}\large\textbf{<<САНКТ-ПЕТЕРБУРГСКИЙ НАЦИОНАЛЬНЫЙ ИССЛЕДОВАТЕЛЬСКИЙ УНИВЕРСИТЕТ ИНФОРМАЦИОННЫХ ТЕХНОЛОГИЙ, МЕХАНИКИ И ОПТИКИ>>}\end{center}
 
-~\\\begin{center}
+\begin{center}
 \textbf{\largeОТЗЫВ РЕЦЕНЗЕНТА
 ~\\О ВЫПУСКНОЙ КВАЛИФИКАЦИОННОЙ РАБОТЕ}
 \end{center}
 
 \large
-~\\\textbf{Студент }$\underset{\text{(ФИО)}}{\underline{\hspace{0\textwidth\text{[AUTHOR]}}}}$\qquad$\underset{\text{(ПОДПИСЬ)}}{\underline{\hspace{0\textwidth\text{\qquad\qquad\qquad}}}}$
+~\\\textbf{Студент }$\underset{\text{(ФИО)}}{\underline{\hspace{0\textwidth\text{[STUDENT]}}}}$\quad$\underset{\text{(ПОДПИСЬ)}}{\underline{\hspace{0\textwidth\text{\hspace{7em}}}}}$
 \textbf{Группа }\underline{[GROUP]} \textbf{Кафедра }\underline{[DEPARTMENT]} \textbf{Факультет} \underline{[FACULTY]}
-~\\~\\\textbf{Квалификация} $\underset{\text{(бакалавр, магистр, специалист)}}{\underline{\hspace{0\textwidth\text{БАКАЛАВР}}}}$
+~\\\textbf{Квалификация} $\underset{\text{(бакалавр, магистр, специалист)}}{\underline{\hspace{0\textwidth\text{БАКАЛАВР}}}}$
 ~\\~\\\textbf{Наименование темы: }\underline{[SUBJECT]}
 ~\\~\\\textbf{Руководитель }\underline{[LEADER]}
-~\\\begin{center}\textbf{ОЦЕНКА ВЫПУСКНОЙ КВАЛИФИКАЦИОННОЙ РАБОТЫ}
-\begin{table}
-\begin{tabular}{c|c|l|c|c|c|c|c}
-
-\end{tabular}
-\end{table}
-
-* - не оценивается (трудно оценить)
+\begin{center}\textbf{ОЦЕНКА ВЫПУСКНОЙ КВАЛИФИКАЦИОННОЙ РАБОТЫ}
 \end{center}
 
-~\\~\\\textbf{Отмеченные достоинства }\underline{[ADVANTAGES]}
-~\\~\\\textbf{Отмеченные недостатки } \underline{[DISADVANTAGES]}
-~\\~\\\textbf{Заключение: } Считаю, что ВКР студента \underline{[STUDENT]} на тему:
-~\\~\\$\underset{\text{(название выпускной квалификационной работы)}}{\underline{\hspace{0\textwidth\text{[ARTICLE]}}}}$
-соответствует требованиям Университета ИТМО, предъявляемым к ВКР и заслуживает оценки \underline{[MARK]}, а её автор присуждения квалификации
-$\underset{\text{(бакалавр, инженер, магистр)}}{\underline{\hspace{0\textwidth\text{[БАКАЛАВРА]}}}}$ по направлению подготовки \underline{[DIRECTION]}
+\normalsize
+\begin{table}[!h]
+\begin{center}
+\begin{tabular}{|c|c|l|c|c|c|c|c|}
+\hline
+\multirow{1}{*}{}& № & \textbf{Показатели оценки} & \multicolumn{5}{|c|}{\textbf{Оценка}}  \\ \cline{4-8}
+& & & 5& 4& 3& 2& 0* \\ \hline
+\multirow{9}{*}{\rotatebox{90}{Справочно-информационная\quad}}& 1 & Соответствие представленного материала техническому заданию & & & & & \\ \cline{2-8}
+& 2 & Раскрытие актуальности тематики работы & & & & & \\ \cline{2-8}
+& 3 & Степень полноты обзора состояния вопроса  & & & & & \\ \cline{2-8}
+& 4 & Корректность постановки задачи исследования и разработки & & & & & \\ \cline{2-8}
+& 5 & \multirow{1}{*}{Уровень и корректность использования в работе методов исследований,} & & & & & \\
+& & математического моделирования, инженерных расчетов& & & & & \\ \cline{2-8}
+& 6 & \multirow{1}{*}{Степень комплексности работы, применение в ней знаний} & & & & & \\
+& & естественнонаучных, социально-гуманитарных, экономических, обще  & & & & & \\ 
+& & профессиональных и специальных дисциплин & & & & & \\ \cline{2-8}
+& 7 & Использование информационных ресурсов Internet & & & & & \\ \cline{2-8}
+& 8 & Использование современных пакетов компьютерных программ и технологий	& & & & & \\ \cline{2-8}
+& 9 & \multirow{1}{*}{Наличие публикаций, участие в н.-т. конференциях, награды за участие в} & & & & & \\ 
+& & конкурсах, подтвержденных копиями & & & & & \\ \hline
+\multirow{2}{*}{\rotatebox{90}{Творческая\hspace{0.5em}}}& 10 & \multirow{1}{*}{Оригинальность и новизна полученных результатов, научных} & & & & & \\		
+& & конструкторских и технологических решений	 & & & & & \\
+& & & & & & & \\ \cline{2-8}
+& 11 & Ясность, четкость, последовательность и обоснованность изложения	& & & & & \\ 
+& & & & & & & \\ \hline
+\multirow{8}{*}{\rotatebox{90}{Оформительская}}& \multirow{4}{*}{}12 & Уровень оформления пояснительной записки: & & & & & \\ \cline{3-8}
+& &\hspace{1.5em} -	общий уровень грамотности & & & & & \\ \cline{3-8}
+& &\hspace{1.5em} -	стиль изложения& & & & & \\ \cline{3-8}
+& &\hspace{1.5em} -	 качество иллюстраций	& & & & & \\ \cline{2-8}
+& 13 & \multirow{1}{*}{Объем и качество выполнения графического материала, его соответствие} & & & & & \\
+& & тексту записки & & & & & \\ \cline{2-8}
+& 14 & \multirow{1}{*}{Соответствие требованиям стандарта оформления пояснительной записки и} & & & & & \\
+& & графического материала& & & & & \\ \hline
+\multicolumn{3}{|c|}{\textbf{ИТОГОВАЯ ОЦЕНКА}} & \multicolumn{5}{|c|}{} \\ \hline
+\end{tabular}
+\end{center}
+\hspace{4em}* - не оценивается (трудно оценить)
+\end{table}
 
-~\\~\\Рецензент $\underset{\text{(ПОДПИСЬ)}}{\underline{\hspace{0\textwidth\text{\qquad\qquad\qquad}}}}$ \qquad\qquad$\underset{\text{(ФИО)}}{\underline{\hspace{0\textwidth\text{[STUDENT]}}}}$
+\large
+~\\~\\\textbf{Отмеченные достоинства } [ADVANTAGES-RECENTEST]
+~\\~\\\textbf{Отмеченные недостатки } [DISADVANTAGES-RECENTEST]
+~\\~\\\textbf{Заключение: } Считаю, что ВКР студента \underline{[STUDENT]} на тему:
+~\\~\\$\underset{\text{(название выпускной квалификационной работы)}}{\underline{\hspace{0\textwidth\text{<<[TOPIC-ARTICLE]>>}}}}$
+соответствует требованиям Университета ИТМО, предъявляемым к ВКР и заслуживает оценки \underline{[MARK]}, а её автор присуждения квалификации
+$\underset{\text{(бакалавр, инженер, магистр)}}{\underline{\hspace{0\textwidth\text{\qquadБАКАЛАВР\qquad}}}}$ по направлению подготовки \underline{[DIRECTION]}
+
+~\\~\\Рецензент $\underset{\text{(ПОДПИСЬ)}}{\underline{\hspace{0\textwidth\text{\qquad\qquad\qquad}}}}$ \qquad\qquad$\underset{\text{(ФИО)}}{\underline{\hspace{0\textwidth\text{[RECENTEST]}}}}$
 
 ~\\<<\underline{[DAY-REVIEW-RECENTEST]}>>\underline{[MONTH-REVIEW-RECENTEST] [YEAR-REVIEW-RECENTEST] г.}
 

@@ -450,59 +450,7 @@
                                       </packing>
                                     </child>
                                     <child>
-                                      <object class="GtkHBox" id="hbox27">
-                                        <property name="visible">True</property>
-                                        <property name="can_focus">False</property>
-                                        <child>
-                                          <object class="GtkLabel" id="label70">
-                                            <property name="width_request">54</property>
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">Квалификация</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">True</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">0</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkEntry" id="qualEntryTitle">
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="editable">False</property>
-                                            <property name="invisible_char">●</property>
-                                            <property name="text" translatable="yes">БАКАЛАВР</property>
-                                            <property name="invisible_char_set">True</property>
-                                            <property name="primary_icon_activatable">False</property>
-                                            <property name="secondary_icon_activatable">False</property>
-                                            <property name="primary_icon_sensitive">True</property>
-                                            <property name="secondary_icon_sensitive">True</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">True</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">1</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkLabel" id="label71">
-                                            <property name="width_request">54</property>
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">False</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">True</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">2</property>
-                                          </packing>
-                                        </child>
-                                      </object>
-                                      <packing>
-                                        <property name="expand">True</property>
-                                        <property name="fill">True</property>
-                                        <property name="position">7</property>
-                                      </packing>
+                                      <placeholder/>
                                     </child>
                                     <child>
                                       <object class="GtkLabel" id="label72">
@@ -1104,7 +1052,7 @@
                                             <property name="width_request">40</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">Оценка секретать ГЭК</property>
+                                            <property name="label" translatable="yes">Секретарь ГЭК</property>
                                           </object>
                                           <packing>
                                             <property name="expand">True</property>
@@ -1848,30 +1796,14 @@
                                         </child>
                                         <child>
                                           <object class="GtkLabel" id="label34">
+                                            <property name="width_request">54</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">     Квалификация:</property>
                                           </object>
                                           <packing>
                                             <property name="expand">True</property>
                                             <property name="fill">True</property>
                                             <property name="position">2</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkEntry" id="qualEntryTask">
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="invisible_char">●</property>
-                                            <property name="primary_icon_activatable">False</property>
-                                            <property name="secondary_icon_activatable">False</property>
-                                            <property name="primary_icon_sensitive">True</property>
-                                            <property name="secondary_icon_sensitive">True</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">True</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">3</property>
                                           </packing>
                                         </child>
                                       </object>
@@ -2022,7 +1954,7 @@
                                         <property name="can_focus">False</property>
                                         <child>
                                           <object class="GtkLabel" id="label41">
-                                            <property name="width_request">50</property>
+                                            <property name="width_request">10</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <property name="label" translatable="yes">Содержание 
@@ -2036,12 +1968,13 @@
                                         </child>
                                         <child>
                                           <object class="GtkTextView" id="maintenanceEntryTask">
-                                            <property name="width_request">300</property>
+                                            <property name="width_request">450</property>
                                             <property name="height_request">100</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
                                             <property name="wrap_mode">word</property>
                                             <property name="indent">5</property>
+                                            <property name="accepts_tab">False</property>
                                           </object>
                                           <packing>
                                             <property name="expand">False</property>
@@ -2051,7 +1984,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkLabel" id="label42">
-                                            <property name="width_request">50</property>
+                                            <property name="width_request">10</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                           </object>
@@ -2063,7 +1996,7 @@
                                         </child>
                                       </object>
                                       <packing>
-                                        <property name="expand">True</property>
+                                        <property name="expand">False</property>
                                         <property name="fill">True</property>
                                         <property name="position">19</property>
                                       </packing>
@@ -2085,7 +2018,7 @@
                                         <property name="can_focus">False</property>
                                         <child>
                                           <object class="GtkLabel" id="label44">
-                                            <property name="width_request">50</property>
+                                            <property name="width_request">10</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <property name="label" translatable="yes">Перечень графического 
@@ -2099,7 +2032,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkTextView" id="graphEntryTask">
-                                            <property name="width_request">300</property>
+                                            <property name="width_request">450</property>
                                             <property name="height_request">100</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
@@ -2114,7 +2047,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkLabel" id="label45">
-                                            <property name="width_request">50</property>
+                                            <property name="width_request">10</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                           </object>
@@ -2148,7 +2081,7 @@
                                         <property name="can_focus">False</property>
                                         <child>
                                           <object class="GtkLabel" id="label47">
-                                            <property name="width_request">50</property>
+                                            <property name="width_request">10</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                             <property name="label" translatable="yes">Исходные материалы 
@@ -2163,7 +2096,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkTextView" id="sourcesEntryTask">
-                                            <property name="width_request">300</property>
+                                            <property name="width_request">450</property>
                                             <property name="height_request">100</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">True</property>
@@ -2178,7 +2111,7 @@
                                         </child>
                                         <child>
                                           <object class="GtkLabel" id="label48">
-                                            <property name="width_request">50</property>
+                                            <property name="width_request">10</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
                                           </object>
@@ -2430,6 +2363,7 @@
             </child>
             <child>
               <object class="GtkHBox" id="hbox40">
+                <property name="width_request">800</property>
                 <property name="visible">True</property>
                 <property name="can_focus">False</property>
                 <child>
@@ -3477,7 +3411,7 @@
                                     <property name="can_focus">False</property>
                                     <child>
                                       <object class="GtkLabel" id="label161">
-                                        <property name="width_request">250</property>
+                                        <property name="width_request">10</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="label" translatable="yes">Использование 
@@ -3486,38 +3420,41 @@
 программ и технологий</property>
                                       </object>
                                       <packing>
-                                        <property name="expand">False</property>
+                                        <property name="expand">True</property>
                                         <property name="fill">True</property>
                                         <property name="position">0</property>
                                       </packing>
                                     </child>
                                     <child>
                                       <object class="GtkTextView" id="hiTechEntryAnnotation">
-                                        <property name="height_request">75</property>
+                                        <property name="width_request">450</property>
+                                        <property name="height_request">100</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
+                                        <property name="wrap_mode">word</property>
+                                        <property name="accepts_tab">False</property>
                                       </object>
                                       <packing>
-                                        <property name="expand">True</property>
+                                        <property name="expand">False</property>
                                         <property name="fill">True</property>
                                         <property name="position">1</property>
                                       </packing>
                                     </child>
                                     <child>
                                       <object class="GtkLabel" id="label162">
-                                        <property name="width_request">75</property>
+                                        <property name="width_request">10</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                       </object>
                                       <packing>
-                                        <property name="expand">False</property>
+                                        <property name="expand">True</property>
                                         <property name="fill">True</property>
                                         <property name="position">2</property>
                                       </packing>
                                     </child>
                                   </object>
                                   <packing>
-                                    <property name="expand">True</property>
+                                    <property name="expand">False</property>
                                     <property name="fill">True</property>
                                     <property name="position">30</property>
                                   </packing>
@@ -3539,7 +3476,7 @@
                                     <property name="can_focus">False</property>
                                     <child>
                                       <object class="GtkLabel" id="label164">
-                                        <property name="width_request">250</property>
+                                        <property name="width_request">10</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="label" translatable="yes">Краткая
@@ -3547,39 +3484,41 @@
 полученных  результатов</property>
                                       </object>
                                       <packing>
-                                        <property name="expand">False</property>
+                                        <property name="expand">True</property>
                                         <property name="fill">True</property>
                                         <property name="position">0</property>
                                       </packing>
                                     </child>
                                     <child>
                                       <object class="GtkTextView" id="shortDescriptionEntryAnnotation">
-                                        <property name="height_request">75</property>
+                                        <property name="width_request">450</property>
+                                        <property name="height_request">100</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
-                                        <property name="resize_mode">immediate</property>
+                                        <property name="wrap_mode">word</property>
+                                        <property name="accepts_tab">False</property>
                                       </object>
                                       <packing>
-                                        <property name="expand">True</property>
+                                        <property name="expand">False</property>
                                         <property name="fill">True</property>
                                         <property name="position">1</property>
                                       </packing>
                                     </child>
                                     <child>
                                       <object class="GtkLabel" id="label165">
-                                        <property name="width_request">75</property>
+                                        <property name="width_request">10</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                       </object>
                                       <packing>
-                                        <property name="expand">False</property>
+                                        <property name="expand">True</property>
                                         <property name="fill">True</property>
                                         <property name="position">2</property>
                                       </packing>
                                     </child>
                                   </object>
                                   <packing>
-                                    <property name="expand">True</property>
+                                    <property name="expand">False</property>
                                     <property name="fill">True</property>
                                     <property name="position">32</property>
                                   </packing>
@@ -3601,45 +3540,48 @@
                                     <property name="can_focus">False</property>
                                     <child>
                                       <object class="GtkLabel" id="label167">
-                                        <property name="width_request">250</property>
+                                        <property name="width_request">10</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="label" translatable="yes">Полученные гранты, 
 при выполнении работы</property>
                                       </object>
                                       <packing>
-                                        <property name="expand">False</property>
+                                        <property name="expand">True</property>
                                         <property name="fill">True</property>
                                         <property name="position">0</property>
                                       </packing>
                                     </child>
                                     <child>
                                       <object class="GtkTextView" id="grantsEntryAnnotation">
-                                        <property name="height_request">75</property>
+                                        <property name="width_request">450</property>
+                                        <property name="height_request">100</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
+                                        <property name="wrap_mode">word</property>
+                                        <property name="accepts_tab">False</property>
                                       </object>
                                       <packing>
-                                        <property name="expand">True</property>
+                                        <property name="expand">False</property>
                                         <property name="fill">True</property>
                                         <property name="position">1</property>
                                       </packing>
                                     </child>
                                     <child>
                                       <object class="GtkLabel" id="label168">
-                                        <property name="width_request">75</property>
+                                        <property name="width_request">10</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                       </object>
                                       <packing>
-                                        <property name="expand">False</property>
+                                        <property name="expand">True</property>
                                         <property name="fill">True</property>
                                         <property name="position">2</property>
                                       </packing>
                                     </child>
                                   </object>
                                   <packing>
-                                    <property name="expand">True</property>
+                                    <property name="expand">False</property>
                                     <property name="fill">True</property>
                                     <property name="position">34</property>
                                   </packing>
@@ -3661,7 +3603,7 @@
                                     <property name="can_focus">False</property>
                                     <child>
                                       <object class="GtkLabel" id="label170">
-                                        <property name="width_request">250</property>
+                                        <property name="width_request">10</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                         <property name="label" translatable="yes">Наличие публикаций 
@@ -3670,38 +3612,41 @@
 по теме ВКР</property>
                                       </object>
                                       <packing>
-                                        <property name="expand">False</property>
+                                        <property name="expand">True</property>
                                         <property name="fill">True</property>
                                         <property name="position">0</property>
                                       </packing>
                                     </child>
                                     <child>
                                       <object class="GtkTextView" id="publicesEntryAnnotation">
-                                        <property name="height_request">75</property>
+                                        <property name="width_request">450</property>
+                                        <property name="height_request">100</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">True</property>
+                                        <property name="wrap_mode">word</property>
+                                        <property name="accepts_tab">False</property>
                                       </object>
                                       <packing>
-                                        <property name="expand">True</property>
+                                        <property name="expand">False</property>
                                         <property name="fill">True</property>
                                         <property name="position">1</property>
                                       </packing>
                                     </child>
                                     <child>
                                       <object class="GtkLabel" id="label171">
-                                        <property name="width_request">75</property>
+                                        <property name="width_request">10</property>
                                         <property name="visible">True</property>
                                         <property name="can_focus">False</property>
                                       </object>
                                       <packing>
-                                        <property name="expand">False</property>
+                                        <property name="expand">True</property>
                                         <property name="fill">True</property>
                                         <property name="position">2</property>
                                       </packing>
                                     </child>
                                   </object>
                                   <packing>
-                                    <property name="expand">True</property>
+                                    <property name="expand">False</property>
                                     <property name="fill">True</property>
                                     <property name="position">36</property>
                                   </packing>
@@ -4248,31 +4193,14 @@
                                         </child>
                                         <child>
                                           <object class="GtkLabel" id="label193">
+                                            <property name="width_request">54</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">     Квалификация:</property>
                                           </object>
                                           <packing>
                                             <property name="expand">True</property>
                                             <property name="fill">True</property>
                                             <property name="position">2</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkEntry" id="qualEntryRecentest">
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="invisible_char">●</property>
-                                            <property name="invisible_char_set">True</property>
-                                            <property name="primary_icon_activatable">False</property>
-                                            <property name="secondary_icon_activatable">False</property>
-                                            <property name="primary_icon_sensitive">True</property>
-                                            <property name="secondary_icon_sensitive">True</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">True</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">3</property>
                                           </packing>
                                         </child>
                                       </object>
@@ -5096,31 +5024,14 @@
                                         </child>
                                         <child>
                                           <object class="GtkLabel" id="label223">
+                                            <property name="width_request">54</property>
                                             <property name="visible">True</property>
                                             <property name="can_focus">False</property>
-                                            <property name="label" translatable="yes">     Квалификация:</property>
                                           </object>
                                           <packing>
                                             <property name="expand">True</property>
                                             <property name="fill">True</property>
                                             <property name="position">2</property>
-                                          </packing>
-                                        </child>
-                                        <child>
-                                          <object class="GtkEntry" id="qualEntryLeader">
-                                            <property name="visible">True</property>
-                                            <property name="can_focus">True</property>
-                                            <property name="invisible_char">●</property>
-                                            <property name="invisible_char_set">True</property>
-                                            <property name="primary_icon_activatable">False</property>
-                                            <property name="secondary_icon_activatable">False</property>
-                                            <property name="primary_icon_sensitive">True</property>
-                                            <property name="secondary_icon_sensitive">True</property>
-                                          </object>
-                                          <packing>
-                                            <property name="expand">True</property>
-                                            <property name="fill">True</property>
-                                            <property name="position">3</property>
                                           </packing>
                                         </child>
                                       </object>
@@ -5818,11 +5729,11 @@
           </packing>
         </child>
         <child>
-          <object class="GtkVBox" id="vbox6">
+          <object class="GtkVBox" id="nums">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkEntry" id="entry4">
+              <object class="GtkEntry" id="num1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -5838,7 +5749,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry18">
+              <object class="GtkEntry" id="num2">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -5854,7 +5765,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry19">
+              <object class="GtkEntry" id="num3">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -5870,7 +5781,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry20">
+              <object class="GtkEntry" id="num4">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -5886,7 +5797,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry21">
+              <object class="GtkEntry" id="num5">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -5902,7 +5813,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry22">
+              <object class="GtkEntry" id="num6">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -5918,7 +5829,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry23">
+              <object class="GtkEntry" id="num7">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -5934,7 +5845,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry24">
+              <object class="GtkEntry" id="num8">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -5950,7 +5861,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry25">
+              <object class="GtkEntry" id="num9">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -5966,7 +5877,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry26">
+              <object class="GtkEntry" id="num10">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -5982,7 +5893,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry27">
+              <object class="GtkEntry" id="num11">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -5998,7 +5909,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry28">
+              <object class="GtkEntry" id="num12">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6014,7 +5925,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry29">
+              <object class="GtkEntry" id="num13">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6030,7 +5941,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry30">
+              <object class="GtkEntry" id="num14">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6046,7 +5957,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry31">
+              <object class="GtkEntry" id="num15">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6068,11 +5979,11 @@
           </packing>
         </child>
         <child>
-          <object class="GtkVBox" id="vbox9">
+          <object class="GtkVBox" id="names">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkEntry" id="entry32">
+              <object class="GtkEntry" id="name1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6088,7 +5999,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry33">
+              <object class="GtkEntry" id="name2">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6104,7 +6015,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry34">
+              <object class="GtkEntry" id="name3">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6120,7 +6031,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry35">
+              <object class="GtkEntry" id="name4">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6136,7 +6047,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry36">
+              <object class="GtkEntry" id="name5">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6152,7 +6063,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry37">
+              <object class="GtkEntry" id="name6">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6168,7 +6079,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry38">
+              <object class="GtkEntry" id="name7">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6184,7 +6095,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry39">
+              <object class="GtkEntry" id="name8">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6200,7 +6111,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry40">
+              <object class="GtkEntry" id="name9">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6216,7 +6127,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry41">
+              <object class="GtkEntry" id="name10">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6232,7 +6143,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry42">
+              <object class="GtkEntry" id="name11">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6248,7 +6159,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry43">
+              <object class="GtkEntry" id="name12">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6264,7 +6175,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry44">
+              <object class="GtkEntry" id="name13">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6280,7 +6191,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry45">
+              <object class="GtkEntry" id="name14">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6296,7 +6207,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry46">
+              <object class="GtkEntry" id="name15">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6320,11 +6231,11 @@
           </packing>
         </child>
         <child>
-          <object class="GtkVBox" id="vbox10">
+          <object class="GtkVBox" id="deadlines">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkEntry" id="entry47">
+              <object class="GtkEntry" id="dead1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6340,7 +6251,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry48">
+              <object class="GtkEntry" id="dead2">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6356,7 +6267,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry49">
+              <object class="GtkEntry" id="dead3">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6372,7 +6283,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry50">
+              <object class="GtkEntry" id="dead4">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6388,7 +6299,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry51">
+              <object class="GtkEntry" id="dead5">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6404,7 +6315,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry52">
+              <object class="GtkEntry" id="dead6">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6420,7 +6331,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry53">
+              <object class="GtkEntry" id="dead7">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6436,7 +6347,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry54">
+              <object class="GtkEntry" id="dead8">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6452,7 +6363,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry55">
+              <object class="GtkEntry" id="dead9">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6468,7 +6379,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry56">
+              <object class="GtkEntry" id="dead10">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6484,7 +6395,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry57">
+              <object class="GtkEntry" id="dead11">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6500,7 +6411,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry58">
+              <object class="GtkEntry" id="dead12">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6516,7 +6427,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry59">
+              <object class="GtkEntry" id="dead13">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6532,7 +6443,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry60">
+              <object class="GtkEntry" id="dead14">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6548,7 +6459,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry61">
+              <object class="GtkEntry" id="dead15">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6572,11 +6483,11 @@
           </packing>
         </child>
         <child>
-          <object class="GtkVBox" id="vbox11">
+          <object class="GtkVBox" id="marks">
             <property name="visible">True</property>
             <property name="can_focus">False</property>
             <child>
-              <object class="GtkEntry" id="entry62">
+              <object class="GtkEntry" id="mark1">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6592,7 +6503,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry63">
+              <object class="GtkEntry" id="mark2">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6608,7 +6519,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry64">
+              <object class="GtkEntry" id="mark3">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6624,7 +6535,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry65">
+              <object class="GtkEntry" id="mark4">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6640,7 +6551,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry66">
+              <object class="GtkEntry" id="mark5">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6656,7 +6567,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry67">
+              <object class="GtkEntry" id="mark6">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6672,7 +6583,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry68">
+              <object class="GtkEntry" id="mark7">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6688,7 +6599,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry69">
+              <object class="GtkEntry" id="mark8">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6704,7 +6615,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry70">
+              <object class="GtkEntry" id="mark9">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6720,7 +6631,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry71">
+              <object class="GtkEntry" id="mark10">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6736,7 +6647,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry72">
+              <object class="GtkEntry" id="mark11">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6752,7 +6663,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry73">
+              <object class="GtkEntry" id="mark12">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6768,7 +6679,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry74">
+              <object class="GtkEntry" id="mark13">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6784,7 +6695,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry75">
+              <object class="GtkEntry" id="mark14">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>
@@ -6800,7 +6711,7 @@
               </packing>
             </child>
             <child>
-              <object class="GtkEntry" id="entry76">
+              <object class="GtkEntry" id="mark15">
                 <property name="visible">True</property>
                 <property name="can_focus">True</property>
                 <property name="invisible_char">●</property>

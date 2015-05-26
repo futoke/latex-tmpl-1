@@ -1,3 +1,7 @@
+"""
+Version: Bidlokod
+"""
+
 import os
 
 from gi.repository import Gdk, Gtk
@@ -17,17 +21,26 @@ class BachelorsWindow(object):
         # Page 1: Title
         '[ARTICLE-1]': None, '[ARTICLE-2]': None, '[AUTHOR]': None, '[DIRECTION]': None, '[LEADER]': None,
         '[CHEF]': None, '[STUDENT]': None, '[CONSUL-A]': None, '[CONSUL-B]': None, '[TOTAL-MARK]': None,
-        '[GROUP]': None,
-        '[SECRET]': None, '[SHEETS]': None, '[DEMO-MATERIALS]': None, '[FACULTY]': None, '[DEPARTMENT]': None,
+        '[GROUP]': None, '[SECRET]': None, '[SHEETS]': None, '[DEMO-MATERIALS]': None, '[FACULTY]': None,
+        '[DEPARTMENT]': None,
 
         # Page 2: Task
-        '[TASK-ARTICLE]': None,
-        '[TECHNICAL-PROJECT]': None,
-        '[MAINTENANCE]': None,
-        '[GRAPHICAL-MATERIALS]': None,
-        '[PRIMARY-DATA]': None,
-        '[[TABLE-LINES]]': None,
+        '[TASK-ARTICLE]': None, '[TECHNICAL-PROJECT]': None, '[MAINTENANCE]': None, '[GRAPHICAL-MATERIALS]': None,
+        '[PRIMARY-DATA]': None, '[TABLE-LINES]': None,
 
+        # Page 3: Annotation
+        '[THEME-ARTICLE]': None, '[ORGANISATION]': None, '[HI-TECH]': None, '[SHORT-DESCRIPTION]': None,
+        '[GRANTS]': None, '[PUBLICES]': None, '[RESEARCH-OBJECTIVE]': None, '[PROBLEMS]': None, '[NUMBER-SORCES]': None,
+        '[TOTAL-NUMBER-SOURCES]': None, '[LAST-5-NATIVE]': None, '[MIDDLE-NATIVE]': None, '[MORE-10-NATIVE]': None,
+        '[LAST-5-FOREIGN]': None, '[MIDDLE-FOREIGN]': None, '[MORE-10-FOREIGN]': None, '[INTERNET-REQUEST]': None,
+        '[INTERNET-RESOURCES]': None,
+
+        # Page 4: Review by Recentest
+        '[SUBJECT]': None, '[MARK]': None, '[ARTICLE]': None, '[TOPIC-ARTICLE]': None,
+
+        # Page 5: Review by leader
+
+        # Dates
         "[DAY]": None, "[MONTH]": None, "[YEAR]": None,
         "[DAY-DEF]": None, "[MONTH-DEF]": None, "[YEAR-DEF]": None,
         "[DAY-ASSERTION]": None, "[MONTH-ASSERTION]": None, "[YEAR-ASSERTION]": None,
@@ -35,8 +48,8 @@ class BachelorsWindow(object):
         "[DAY-DESTRIPTION]": None, "[MONTH-DESTRIPTION]": None, "[YEAR-DESTRIPTION]": None,
         "[DAY-ACCEPTION]": None, "[MONTH-ACCEPTION]": None, "[YEAR-ACCEPTION]": None,
         "[DAY-ANNOTATION]": None, "[MONTH-ANNOTATION]": None, "[YEAR-ANNOTATION]": None,
-        "[DAY-RECENTEST]": None, "[MONTH-RECENTEST]": None, "[YEAR-RECENTEST]": None,
-        "[DAY-LEADER]": None, "[MONTH-LEADER]": None, "[YEAR-LEADER]": None
+        "[DAY-REVIEW-RECENTEST]": None, "[MONTH-REVIEW-RECENTEST]": None, "[YEAR-REVIEW-RECENTEST]": None,
+        "[DAY-REVIEW-LEADER]": None, "[MONTH-REVIEW-LEADER]": None, "[YEAR-REVIEW-LEADER]": None
     }
 
     gladefile = "open-main.glade"
@@ -97,12 +110,11 @@ class BachelorsWindow(object):
         builder = Gtk.Builder()
         builder.add_from_file(self.gladefile)
         builder.connect_signals(Handlers())
-        '''Bachelor's Window'''
+        # Bachelor's Window
         self.window1 = builder.get_object("window2")
         self.window1.set_title("Bachelor")
         self.window1.connect("delete-event", Gtk.main_quit)
-        """Notebook
-        Page 1: Title List
+        """Page 1: Title List
         """
         self.name_entry = builder.get_object("nameEntryTitle")
         self.author_entry = builder.get_object("authorEntryTitle")
@@ -119,27 +131,26 @@ class BachelorsWindow(object):
         self.assists_entry = builder.get_object("assistsEntryTitle")
         self.pages_entry = builder.get_object("pagesEntryTitle")
         self.demos_entry = builder.get_object("demosEntryTitle")
-        '''Comboboxes'''
+        # Comboboxes
         self.faculty_box_title = builder.get_object("facultyBoxTitle")
         self.faculty_box_title.connect("changed", self.change_department_list)
         self.department_box_title = builder.get_object("departmentBoxTitle")
         self.department_box_title.connect("changed", self.change_groups_list)
         self.group_box_title = builder.get_object("groupBoxTitle")
-        '''List Store'''
+        # List Store
         self.faculty_list = builder.get_object("facultyList")
         self.department_list = builder.get_object("departmentList")
         self.group_list = builder.get_object("groupsList")
         # Buttons
         self.create_button = builder.get_object("createTitleButton")
         self.create_button.connect("clicked", lambda cf2: self.change_tex_file(0, "TITLE.tex"))
-        '''Calendar buttons'''
+        # Calendar buttons
         self.choose_date_top = builder.get_object("button16")
         self.choose_date_top.connect("clicked", lambda date_0: self.get_date_from_calendar(reported_id=0))
         self.choose_date_bottom = builder.get_object("button17")
         self.choose_date_bottom.connect("clicked", lambda date_1: self.get_date_from_calendar(reported_id=1))
         self.notebook = builder.get_object("notebook1")
-        """
-        Page 2: "Task"
+        """Page 2: "Task"
         """
         self.confirm = builder.get_object("confirmEntryTask")
         self.choose_date_task = builder.get_object("dateTask")
@@ -168,8 +179,7 @@ class BachelorsWindow(object):
         self.date_accepted.connect("clicked", lambda date_5: self.get_date_from_calendar(reported_id=5))
         self.create_task = builder.get_object("createTask")
         self.create_task.connect("clicked", lambda cf: self.change_tex_file(1, "TASK.tex"))
-        """
-        Page 3: Annotationse
+        """Page 3: Annotation
         """
         self.student_annotation = builder.get_object("studentEntryAnnotation")
         self.subject_annotation = builder.get_object("subjectEntryAnnotation")
@@ -185,7 +195,7 @@ class BachelorsWindow(object):
         self.last_5_foreign_annotation = builder.get_object("last5ForeignEntryAnnotation")
         self.middle_foreign_annotation = builder.get_object("5to10ForeignEntryAnnotation")
         self.more_10_foreign_annotation = builder.get_object("more10ForeignEntryAnnotation")
-        # yes / no here
+        self.internet_sources_request_annotation = builder.get_object("internetComboBoxAnnotation")
         self.internet_sources_annotation = builder.get_object("internetResourcesEntryAnnotation")
         self.hi_tech_annotation = builder.get_object("hiTechEntryAnnotation")
         self.short_description_annotation = builder.get_object("shortDescriptionEntryAnnotation")
@@ -197,8 +207,7 @@ class BachelorsWindow(object):
         self.date_button_annotation.connect("clicked", lambda date_6: self.get_date_from_calendar(reported_id=6))
         self.create_annotation = builder.get_object("createButtonAnnotation")
         self.create_annotation.connect("clicked", lambda cfa: self.change_tex_file(2, "ANNOTATION.tex"))
-        """
-        Page 4: Review by recentest
+        """Page 4: Review by recentest
         """
         self.student_recentest = builder.get_object("studentEntryRecentest")
         self.faculty_box_recentest = builder.get_object("facultyBoxRecentest")
@@ -217,8 +226,7 @@ class BachelorsWindow(object):
         self.date_button_recentest.connect("clicked", lambda date_7: self.get_date_from_calendar(reported_id=7))
         self.create_recentest = builder.get_object("createButtonRecentest")
         self.create_recentest.connect("clicked", lambda cfr: self.change_tex_file(3, "REVIEW-BY-RECENTEST.tex"))
-        """
-        Page 5: Review by leader
+        """Page 5: Review by leader
         """
         self.student_leader = builder.get_object("studentEntryLeader")
         self.faculty_box_leader = builder.get_object("facultyBoxLeader")
@@ -235,6 +243,7 @@ class BachelorsWindow(object):
         self.date_button_leader.connect("clicked", lambda date_8: self.get_date_from_calendar(reported_id=8))
         self.create_leader = builder.get_object("createButtonLeader")
         self.create_leader.connect("clicked", lambda clf: self.change_tex_file(4, "REVIEW-BY-LEADER.tex"))
+
         self.window1.show_all()
 
     @staticmethod
@@ -324,14 +333,13 @@ class BachelorsWindow(object):
         The input is a string that is modified by the addition of N spaces before and after it.
         :return line: chaged line
         """
-        length_of_field = 23
+        length_of_field = 16
         length_of_line = len(text_field)
         count_of_spaces = 0
         if length_of_line < length_of_field:
             count_of_spaces = int(abs((length_of_field - length_of_line) / 2))
-        line = "\\hspace{%sem}" % count_of_spaces + " " + text_field + "\\hspace{%sem}" % count_of_spaces
+        line = "\\hspace{%sem}" % count_of_spaces + text_field + "\\hspace{%sem}" % count_of_spaces
         return line
-
 
     def got_entry_fields(self, page_num):
         """
@@ -352,18 +360,19 @@ class BachelorsWindow(object):
                 self.dict_of_fields["[ARTICLE-2]"] = self.build_article()[1]
             else:
                 self.dict_of_fields["[ARTICLE-1]"] = self.name_entry.get_text()
-            self.dict_of_fields["[AUTHOR]"] = self.addition_lines_to_text_field(self.author_entry.get_text())
+
+            self.dict_of_fields["[AUTHOR]"] = "\\qquad %s \\qquad" % self.author_entry.get_text()
             self.dict_of_fields["[DIRECTION]"] = self.addition_lines_to_text_field(self.dir_prep_entry.get_text())
             self.dict_of_fields["[LEADER]"] = self.addition_lines_to_text_field(self.leader_entry.get_text())
             self.dict_of_fields["[CHEF]"] = self.addition_lines_to_text_field(self.chef_entry.get_text())
-            self.dict_of_fields["[STUDENT]"] = self.addition_lines_to_text_field(self.student_entry.get_text())
+            self.dict_of_fields["[STUDENT]"] = "\\qquad %s \\qquad" % self.student_entry.get_text()
             self.dict_of_fields["[CONSUL-A]"] = self.addition_lines_to_text_field(self.consuls_a_entry.get_text())
             self.dict_of_fields["[CONSUL-B]"] = self.addition_lines_to_text_field(self.consuls_b_entry.get_text())
             self.dict_of_fields["[TOTAL-MARK]"] = self.mark_entry.get_text()
             self.dict_of_fields["[SECRET]"] = self.assists_entry.get_text()
             self.dict_of_fields["[SHEETS]"] = self.addition_lines_to_text_field(self.pages_entry.get_text())
             self.dict_of_fields["[DEMO-MATERIALS]"] = self.addition_lines_to_text_field(self.demos_entry.get_text())
-            '''Taken date'''
+            # Taken date
             list_of_keys = list(Calendar.dict_of_dates.keys())
             for current_key in list_of_keys:
                 self.dict_of_fields["[%s]" % current_key.upper()] = Calendar.dict_of_dates[current_key]
@@ -374,7 +383,9 @@ class BachelorsWindow(object):
             self.dict_of_fields["[DEPARTMENT]"] = self.department_model[self.department_box_title.get_active_iter()][0]
             self.group_model = self.group_box_title.get_model()
             self.dict_of_fields["[GROUP]"] = self.group_model[self.group_box_title.get_active_iter()][0]
+
             return self.dict_of_fields
+
         elif self.page_num is 1:
             """Page 2: Task
             """
@@ -417,11 +428,86 @@ class BachelorsWindow(object):
         elif self.page_num is 2:
             """Page 3: Annotation
             """
-            pass
+            for i in range(len(self.dict_of_fields)):
+                self.dict_of_fields["%s" % list(self.dict_of_fields.keys())[i]] = ''
+            list_of_keys = list(Calendar.dict_of_dates.keys())
+            for current_key in list_of_keys:
+                self.dict_of_fields["[%s]" % current_key.upper()] = Calendar.dict_of_dates[current_key]
+            self.dict_of_fields["[STUDENT]"] = self.addition_lines_to_text_field(self.student_annotation.get_text())
+            self.dict_of_fields["[THEME-ARTICLE]"] = self.addition_lines_to_text_field(self.subject_annotation.get_text())
+            self.dict_of_fields["[DIRECTION]"] = self.addition_lines_to_text_field(self.direction_annotation.get_text())
+            self.dict_of_fields["[ORGANISATION]"] = self.addition_lines_to_text_field(self.organisation_annotation.get_text())
+            self.dict_of_fields["[RESEARCH-OBJECTIVE]"] = self.addition_lines_to_text_field(self.research_objective_annotation.get_text())
+            self.dict_of_fields["[PROBLEMS]"] = self.addition_lines_to_text_field(self.problems_annptation.get_text())
+            self.dict_of_fields["[NUMBER-SORCES]"] = self.addition_lines_to_text_field(self.numbers_sources_annotation.get_text())
+            self.dict_of_fields["[TOTAL-NUMBER-SOURCES]"] = self.addition_lines_to_text_field(self.total_sources_annotation.get_text())
+            self.dict_of_fields["[LAST-5-NATIVE]"] = self.addition_lines_to_text_field(self.last_5_native_annotation.get_text())
+            self.dict_of_fields["[MIDDLE-NATIVE]"] = self.addition_lines_to_text_field(self.middle_native_annotation.get_text())
+            self.dict_of_fields["[MORE-10-NATIVE]"] = self.addition_lines_to_text_field(self.more_10_native_annotation.get_text())
+            self.dict_of_fields["[LAST-5-FOREIGN]"] = self.addition_lines_to_text_field(self.last_5_foreign_annotation.get_text())
+            self.dict_of_fields["[MIDDLE-FOREIGN]"] = self.addition_lines_to_text_field(self.middle_foreign_annotation.get_text())
+            self.dict_of_fields["[MORE-10-FOREIGN]"] = self.addition_lines_to_text_field(self.more_10_foreign_annotation.get_text())
+            self.internet_model = self.internet_sources_request_annotation.get_model()
+            self.dict_of_fields["[INTERNET-REQUEST]"] = self.internet_model[self.internet_sources_request_annotation.get_active_iter()][0]
+            self.dict_of_fields["[INTERNET-RESOURCES]"] = self.internet_sources_annotation.get_text()
+            self.dict_of_fields["[HI-TECH]"] = self.hi_tech_annotation.get_buffer().get_text(
+                self.hi_tech_annotation.get_buffer().get_start_iter(),
+                self.hi_tech_annotation.get_buffer().get_end_iter(), True)
+            self.dict_of_fields["[HI-TECH]"] = self.add_new_line_to_tex(
+                self.dict_of_fields["[HI-TECH]"], end=4)
+            self.dict_of_fields["[SHORT-DESCRIPTION]"] = self.short_description_annotation.get_buffer().get_text(
+                self.short_description_annotation.get_buffer().get_start_iter(),
+                self.short_description_annotation.get_buffer().get_end_iter(), True)
+            self.dict_of_fields["[SHORT-DESCRIPTION]"] = self.add_new_line_to_tex(
+                self.dict_of_fields["[SHORT-DESCRIPTION]"], end=4)
+            self.dict_of_fields["[GRANTS]"] = self.grants_annotation.get_buffer().get_text(
+                self.grants_annotation.get_buffer().get_start_iter(),
+                self.grants_annotation.get_buffer().get_end_iter(), True)
+            self.dict_of_fields["[GRANTS]"] = self.add_new_line_to_tex(
+                self.dict_of_fields["[GRANTS]"], end=4)
+            self.dict_of_fields["[PUBLICES]"] = self.publices_annotation.get_buffer().get_text(
+                self.publices_annotation.get_buffer().get_start_iter(),
+                self.publices_annotation.get_buffer().get_end_iter(), True)
+            self.dict_of_fields["[PUBLICES]"] = self.add_new_line_to_tex(
+                self.dict_of_fields["[PUBLICES]"], end=4)
+            self.dict_of_fields["[GRADUATE]"] = self.addition_lines_to_text_field(self.graduate_annotation.get_text())
+            self.dict_of_fields["[LEADER]"] = self.addition_lines_to_text_field(self.leader_annotation.get_text())
+
+            return self.dict_of_fields
+
         elif self.page_num is 3:
             """Page 4: Review by recentest
             """
-            pass
+            for i in range(len(self.dict_of_fields)):
+                self.dict_of_fields["%s" % list(self.dict_of_fields.keys())[i]] = ''
+            list_of_keys = list(Calendar.dict_of_dates.keys())
+            for current_key in list_of_keys:
+                self.dict_of_fields["[%s]" % current_key.upper()] = Calendar.dict_of_dates[current_key]
+            self.dict_of_fields["[STUDENT]"] = self.addition_lines_to_text_field(self.student_recentest.get_text())
+            self.faculty_model = self.faculty_box_recentest.get_model()
+            self.dict_of_fields["[FACULTY]"] = self.faculty_model[self.faculty_box_recentest.get_active_iter()][0]
+            self.department_model = self.department_box_recentest.get_model()
+            self.dict_of_fields["[DEPARTMENT]"] = self.department_model[self.department_box_recentest.get_active_iter()][0]
+            self.group_model = self.group_box_recentest.get_model()
+            self.dict_of_fields["[GROUP]"] = self.group_model[self.group_box_recentest.get_active_iter()][0]
+            self.dict_of_fields["[DIRECTION]"] = self.addition_lines_to_text_field(self.direction_recentest.get_text())
+            self.dict_of_fields["[LEADER]"] = self.addition_lines_to_text_field(self.leader_recentest.get_text())
+            self.dict_of_fields["[TOPIC-ARTICLE]"] = self.addition_lines_to_text_field(self.topic_name_recentest.get_text())
+            self.dict_of_fields["[ADVANTAGES-RECENTEST]"] = self.advantages_recentest.get_buffer().get_text(
+                self.advantages_recentest.get_buffer().get_start_iter(),
+                self.advantages_recentest.get_buffer().get_end_iter(), True)
+            self.dict_of_fields["[ADVANTAGES-RECENTEST]"] = self.add_new_line_to_tex(
+                self.dict_of_fields["[ADVANTAGES-RECENTEST]"], end=4)
+            self.dict_of_fields["[DISADVANTAGES-RECENTEST]"] = self.disadvantages_recentest.get_buffer().get_text(
+                self.disadvantages_recentest.get_buffer().get_start_iter(),
+                self.disadvantages_recentest.get_buffer().get_end_iter(), True)
+            self.dict_of_fields["[DISADVANTAGES-RECENTEST]"] = self.add_new_line_to_tex(
+                self.dict_of_fields["[DISADVANTAGES-RECENTEST]"], end=4)
+            self.dict_of_fields["[TOTAL-MARK]"] = self.addition_lines_to_text_field(self.mark_recentest.get_text())
+            self.dict_of_fields["[RECENTEST]"] = self.addition_lines_to_text_field(self.recentest.get_text())
+
+            return self.dict_of_fields
+
         elif self.page_num is 4:
             """Page 5: Review by leader
             """
@@ -439,7 +525,7 @@ class BachelorsWindow(object):
             self.dict_of_fields["[GROUP]"] = self.group_model[self.group_box_leader.get_active_iter()][0]
             self.dict_of_fields["[DIRECTION]"] = self.addition_lines_to_text_field(self.direction_leader.get_text())
             self.dict_of_fields["[LEADER]"] = self.addition_lines_to_text_field(self.leader_leader.get_text())
-            self.dict_of_fields["[SUBJECT]"] = self.addition_lines_to_text_field(self.topic_name_leader.get_text())
+            self.dict_of_fields["[TOPIC-ARTICLE]"] = self.addition_lines_to_text_field(self.topic_name_leader.get_text())
             self.dict_of_fields["[ADVANTAGES-LEADER]"] = self.advantages_leader.get_buffer().get_text(
                 self.advantages_leader.get_buffer().get_start_iter(),
                 self.advantages_leader.get_buffer().get_end_iter(), True)
@@ -450,13 +536,11 @@ class BachelorsWindow(object):
                 self.disadvantages_leader.get_buffer().get_end_iter(), True)
             self.dict_of_fields["[DISADVANTAGES-LEADER]"] = self.add_new_line_to_tex(
                 self.dict_of_fields["[DISADVANTAGES-LEADER]"], end=4)
-            return self.dict_of_fields
 
+            return self.dict_of_fields
 
     def add_new_line_to_tex(self, line, end):
         """
-
-        Issue: FIX the devide of the text into lines. (!!!)
 
         :param line:
         :param end:
@@ -510,17 +594,15 @@ class BachelorsWindow(object):
 
         return total_string
 
-
     def change_tex_file(self, page_num, file_name):
         """
         Creates a file with widening ".tex" by the addition text and dates from due to text fields.
         :param button:
         :return nothing:
         """
-
         path = os.getcwd() + "\\samples\\bachelor\\dev\\"
         path_to_files = [path + "title.tex", path + "task.tex", path + "annotation.tex",
-                         path + "review_by_recentest.txe",
+                         path + "review_by_recentest.tex",
                          path + "review_by_leader.tex"]
         self.dict_of_fields = self.got_entry_fields(page_num=page_num)
         self.work_file = open("{0}".format(path_to_files[page_num]), "r", encoding="UTF-8")
@@ -539,16 +621,4 @@ class Handlers(object):
     """
 
     def on_notebook1_switch_page(self, widget, label, page):
-        number_of_current_page = 0
-        if page is 0:
-            number_of_current_page = 0
-        elif page is 1:
-            number_of_current_page = 1
-        elif page is 2:
-            number_of_current_page = 2
-        elif page is 3:
-            number_of_current_page = 3
-        elif page is 4:
-            number_of_current_page = 4
-
-        return number_of_current_page
+        pass
